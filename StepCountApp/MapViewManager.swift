@@ -102,7 +102,7 @@ extension MapViewManager: CLLocationManagerDelegate {
         if drawPolyLine {
             self.lineCoordinates.append(location)
         }
-
+        
         if pointSpotCoordinates.isEmpty {
             setPointSpotCoordinates()
         }

@@ -30,6 +30,8 @@ struct MapViewSwiftUI_1: View {
     @State private var distanceFromCurrentLocation: String?
     @State private var estimatedStepCount: Int?
     @State private var estimatedTimeOfArrival: Int?
+    @State private var polyLine: [CLLocationCoordinate2D] = []
+    @State private var showPolyLine: Bool = false
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -59,7 +61,6 @@ struct MapViewSwiftUI_1: View {
                                     self.selectedPoint = nil
                                 })
                         } else {
-                            
                             Text("20")
                                 .fixedSize()
                                 .foregroundStyle(.white)
@@ -73,29 +74,77 @@ struct MapViewSwiftUI_1: View {
                     }
                 }
                 .annotationTitles(.hidden)
+
+                if showPolyLine {
+                    MapPolyline(coordinates: polyLine)
+                        .stroke(.orange, lineWidth: 8.0)
+                        .mapOverlayLevel(level: .aboveRoads)
+                }
             }
 
             ZStack(alignment: .topLeading) {
                 VStack(alignment: .trailing) {
-                    Button {
-                        guard let currentUserCoordinate = mapViewManager.currentLocation?.coordinate else { return }
-                        self.position = .region(.init(center: .init(latitude: currentUserCoordinate.latitude, longitude: currentUserCoordinate.longitude),
-                                                      latitudinalMeters: 700,
-                                                      longitudinalMeters: 700))
-                    } label: {
-                        HStack {
-                            Image(systemName: "location.fill")
-                                .foregroundStyle(.orange)
-                            Text("내 위치")
-                                .foregroundStyle(.white)
+                    HStack(spacing: 16) {
+                        Button {
+                            mapViewManager.drawPolyLine.toggle()
+                        } label: {
+                            HStack {
+                                if mapViewManager.drawPolyLine {
+                                    Image(systemName: "record.circle")
+                                        .foregroundStyle(.orange)
+                                } else {
+                                    Image(systemName: "record.circle.fill")
+                                        .foregroundStyle(.orange)
+                                }
+                                Text(mapViewManager.drawPolyLine ? "기록 중지" : "기록 시작")
+                                    .foregroundStyle(.white)
+                            }
+                            .padding(8)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(Color.primary)
+                            }
+                        }
+
+                        Button {
+                            self.showPolyLine.toggle()
+                        } label: {
+                            HStack {
+                                Image(systemName: "road.lanes")
+                                    .foregroundStyle(.orange)
+                                Text("경로 보기")
+                                    .lineLimit(1)
+                                    .fixedSize()
+                                    .foregroundStyle(.white)
+                            }
                         }
                         .padding(8)
                         .background {
                             RoundedRectangle(cornerRadius: 10)
                                 .foregroundStyle(Color.primary)
                         }
+
+                        Button {
+                            guard let currentUserCoordinate = mapViewManager.currentLocation?.coordinate else { return }
+                            self.position = .region(.init(center: .init(latitude: currentUserCoordinate.latitude, longitude: currentUserCoordinate.longitude),
+                                                          latitudinalMeters: 700,
+                                                          longitudinalMeters: 700))
+                        } label: {
+                            HStack {
+                                Image(systemName: "location.fill")
+                                    .foregroundStyle(.orange)
+                                Text("내 위치")
+                                    .foregroundStyle(.white)
+                            }
+                            .padding(8)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(Color.primary)
+                            }
+                        }
                     }
-                    .padding(.trailing, 15)
+                    .padding([.leading, .trailing], 15)
+
 
                     if showPointDetail {
                         ZStack(alignment: .topLeading) {
@@ -158,6 +207,9 @@ struct MapViewSwiftUI_1: View {
             self.distanceFromCurrentLocation = String(format: "%.2f", distance)
             self.estimatedStepCount = estimatedStepCount
             self.estimatedTimeOfArrival = estimatedTimeOfArrival
+        }
+        .onChange(of: mapViewManager.lineCoordinates) { _, newValue in
+            self.polyLine = newValue.map { $0.coordinate }
         }
     }
 
