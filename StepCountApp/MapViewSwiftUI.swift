@@ -212,20 +212,6 @@ struct SearchButton: View {
 
 }
 
-
-
-extension CLLocationCoordinate2D {
-    static let annotaion1: CLLocationCoordinate2D = .init(latitude: 37.507045, longitude: 127.063388)
-    static let marker1: CLLocationCoordinate2D = .init(latitude: 37.506, longitude: 127)
-    static let 판교경위도: CLLocationCoordinate2D = .init(latitude: 37.506, longitude: 127)
-}
-
-extension MKCoordinateRegion {
-    static let 판교역Region = MKCoordinateRegion(
-        center: .판교경위도,
-        span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
-}
-
 struct ItemInfoView: View {
     @State private var lookAroundScene: MKLookAroundScene? = nil
     let selectedResult: MKMapItem

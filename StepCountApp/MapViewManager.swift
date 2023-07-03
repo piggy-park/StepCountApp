@@ -101,8 +101,10 @@ extension MapViewManager: CLLocationManagerDelegate {
         // draw polyline
         if drawPolyLine {
             self.lineCoordinates.append(location)
+        } else if !lineCoordinates.isEmpty {
+            self.lineCoordinates = []
         }
-        
+
         if pointSpotCoordinates.isEmpty {
             setPointSpotCoordinates()
         }
