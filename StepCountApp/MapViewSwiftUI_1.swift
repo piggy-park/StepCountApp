@@ -35,156 +35,8 @@ struct MapViewSwiftUI_1: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            Map(position: $position, selection: $selectedResult) {
-                UserAnnotation(anchor: .bottom) {
-                    ZStack {
-                        Circle()
-                            .foregroundStyle(.orange)
-                        Circle()
-                            .foregroundStyle(.white)
-                            .padding(5)
-                    }
-                }
-
-                ForEach(mapViewManager.pointSpotCoordinates, id: \.self) { point in
-                    Annotation(point.title ?? "", coordinate: point.coordinate) {
-                        if point == selectedPoint {
-                            ZStack {
-                                Circle()
-                                    .foregroundStyle(.white)
-                                Circle()
-                                    .foregroundStyle(.blue)
-                                    .padding(5)
-                            }
-                                .frame(width: 30, height: 30)
-                                .onTapGesture(perform: {
-                                    self.selectedPoint = nil
-                                })
-                        } else {
-                            Text("20")
-                                .fixedSize()
-                                .foregroundStyle(.white)
-                                .padding(5)
-                                .background(.blue, in: Circle())
-                                .frame(width: 30, height: 30)
-                                .onTapGesture {
-                                    self.selectedPoint = point
-                                }
-                        }
-                    }
-                }
-                .annotationTitles(.hidden)
-
-                if showPolyLine {
-                    MapPolyline(coordinates: polyLine)
-                        .stroke(.orange, lineWidth: 8.0)
-                        .mapOverlayLevel(level: .aboveRoads)
-                }
-            }
-
-            ZStack(alignment: .topLeading) {
-                VStack(alignment: .trailing) {
-                    HStack(spacing: 16) {
-                        Button {
-                            mapViewManager.drawPolyLine.toggle()
-                        } label: {
-                            HStack {
-                                if mapViewManager.drawPolyLine {
-                                    Image(systemName: "record.circle")
-                                        .foregroundStyle(.orange)
-                                } else {
-                                    Image(systemName: "record.circle.fill")
-                                        .foregroundStyle(.orange)
-                                }
-                                Text(mapViewManager.drawPolyLine ? "기록 중지" : "기록 시작")
-                                    .foregroundStyle(.white)
-                            }
-                            .padding(8)
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundStyle(Color.primary)
-                            }
-                        }
-
-                        Button {
-                            self.showPolyLine.toggle()
-                        } label: {
-                            HStack {
-                                Image(systemName: "road.lanes")
-                                    .foregroundStyle(.orange)
-                                Text("경로 보기")
-                                    .lineLimit(1)
-                                    .fixedSize()
-                                    .foregroundStyle(.white)
-                            }
-                        }
-                        .padding(8)
-                        .background {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundStyle(Color.primary)
-                        }
-
-                        Button {
-                            guard let currentUserCoordinate = mapViewManager.currentLocation?.coordinate else { return }
-                            self.position = .region(.init(center: .init(latitude: currentUserCoordinate.latitude, longitude: currentUserCoordinate.longitude),
-                                                          latitudinalMeters: 700,
-                                                          longitudinalMeters: 700))
-                        } label: {
-                            HStack {
-                                Image(systemName: "location.fill")
-                                    .foregroundStyle(.orange)
-                                Text("내 위치")
-                                    .foregroundStyle(.white)
-                            }
-                            .padding(8)
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundStyle(Color.primary)
-                            }
-                        }
-                    }
-                    .padding([.leading, .trailing], 15)
-
-
-                    if showPointDetail {
-                        ZStack(alignment: .topLeading) {
-                            RoundedRectangle(cornerRadius: 25)
-                                .foregroundStyle(Color.primary)
-                            HStack {
-                                VStack(alignment: .leading, spacing: 0) {
-                                    // TODO: 위치정보에 따라 바꿀것.
-                                    Text("그라운드 X에 가면")
-                                        .foregroundColor(.gray)
-                                    Spacer().frame(height: 8)
-                                    Text("20원 지급")
-                                        .foregroundStyle(Color.blue)
-                                        .font(.title)
-                                        .fontWeight(.bold)
-                                    Spacer().frame(height: 16)
-                                    Text("현재 위치에서 \(estimatedStepCount ?? 0)걸음 • \(estimatedTimeOfArrival ?? 0)분 예상")
-                                        .foregroundStyle(Color.white)
-                                        .fontWeight(.bold)
-                                    if let distanceFromCurrentLocation {
-                                        Text("거리: \(distanceFromCurrentLocation)KM")
-                                            .foregroundStyle(Color.white)
-                                    }
-                                }
-                                .padding(.top, 30)
-                                .padding(.leading, 20)
-
-                                Image(systemName: "figure.run.circle")
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                    .foregroundStyle(.white)
-
-                            }
-                        }
-                        .frame(height: 180)
-                        .padding([.leading, .trailing], 15)
-                        .padding(.bottom, 25)
-                    }
-                }
-            }
+            buildMap()
+            buildButtons()
         }
         .ignoresSafeArea()
         .onAppear {
@@ -213,8 +65,167 @@ struct MapViewSwiftUI_1: View {
         }
     }
 
+    @ViewBuilder
+    private func buildMap() -> some View {
+        Map(position: $position, selection: $selectedResult) {
+            UserAnnotation(anchor: .bottom) {
+                ZStack {
+                    Circle()
+                        .foregroundStyle(.orange)
+                    Circle()
+                        .foregroundStyle(.white)
+                        .padding(5)
+                }
+            }
+
+            ForEach(mapViewManager.pointSpotCoordinates, id: \.self) { point in
+                Annotation(point.title ?? "", coordinate: point.coordinate) {
+                    if point == selectedPoint {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(.white)
+                            Circle()
+                                .foregroundStyle(.blue)
+                                .padding(5)
+                        }
+                            .frame(width: 30, height: 30)
+                            .onTapGesture(perform: {
+                                self.selectedPoint = nil
+                            })
+                    } else {
+                        Text("20")
+                            .fixedSize()
+                            .foregroundStyle(.white)
+                            .padding(5)
+                            .background(.blue, in: Circle())
+                            .frame(width: 30, height: 30)
+                            .onTapGesture {
+                                self.selectedPoint = point
+                            }
+                    }
+                }
+            }
+            .annotationTitles(.hidden)
+
+            if showPolyLine {
+                MapPolyline(coordinates: polyLine)
+                    .stroke(.orange, lineWidth: 8.0)
+                    .mapOverlayLevel(level: .aboveRoads)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func buildButtons() -> some View {
+        ZStack(alignment: .topLeading) {
+            VStack(alignment: .trailing) {
+                Text("\(polyLine.count)")
+                HStack(spacing: 16) {
+                    Button {
+                        mapViewManager.drawPolyLine.toggle()
+                    } label: {
+                        HStack {
+                            if mapViewManager.drawPolyLine {
+                                Image(systemName: "stop.circle.fill")
+                                    .foregroundStyle(.orange)
+                            } else {
+                                Image(systemName: "record.circle")
+                                    .foregroundStyle(.orange)
+                            }
+                            Text(mapViewManager.drawPolyLine ? "기록 중지" : "기록 시작")
+                                .foregroundStyle(.white)
+                        }
+                        .padding(8)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(Color.primary)
+                        }
+                    }
+
+                    Button {
+                        self.showPolyLine.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "road.lanes")
+                                .foregroundStyle(.orange)
+                            Text("경로 보기")
+                                .lineLimit(1)
+                                .fixedSize()
+                                .foregroundStyle(.white)
+                        }
+                    }
+                    .padding(8)
+                    .background {
+                        RoundedRectangle(cornerRadius: 10)
+                            .foregroundStyle(Color.primary)
+                    }
+
+                    Button {
+                        guard let currentUserCoordinate = mapViewManager.currentLocation?.coordinate else { return }
+                        self.position = .region(.init(center: .init(latitude: currentUserCoordinate.latitude, longitude: currentUserCoordinate.longitude),
+                                                      latitudinalMeters: 700,
+                                                      longitudinalMeters: 700))
+                    } label: {
+                        HStack {
+                            Image(systemName: "location.fill")
+                                .foregroundStyle(.orange)
+                            Text("내 위치")
+                                .foregroundStyle(.white)
+                        }
+                        .padding(8)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(Color.primary)
+                        }
+                    }
+                }
+                .padding([.leading, .trailing], 15)
+
+
+                if showPointDetail {
+                    ZStack(alignment: .topLeading) {
+                        RoundedRectangle(cornerRadius: 25)
+                            .foregroundStyle(Color.primary)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 0) {
+                                // TODO: 위치정보에 따라 바꿀것.
+                                Text("그라운드 X에 가면")
+                                    .foregroundColor(.gray)
+                                Spacer().frame(height: 8)
+                                Text("20원 지급")
+                                    .foregroundStyle(Color.blue)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                Spacer().frame(height: 16)
+                                Text("현재 위치에서 \(estimatedStepCount ?? 0)걸음 • \(estimatedTimeOfArrival ?? 0)분 예상")
+                                    .foregroundStyle(Color.white)
+                                    .fontWeight(.bold)
+                                if let distanceFromCurrentLocation {
+                                    Text("거리: \(distanceFromCurrentLocation)KM")
+                                        .foregroundStyle(Color.white)
+                                }
+                            }
+                            .padding(.top, 30)
+                            .padding(.leading, 20)
+
+                            Image(systemName: "figure.run.circle")
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .foregroundStyle(.white)
+
+                        }
+                    }
+                    .frame(height: 180)
+                    .padding([.leading, .trailing], 15)
+                    .padding(.bottom, 25)
+                }
+            }
+        }
+    }
+
+
     // 특정 두 위치 기준 거리 가져오기.
-    func calculateDistance(from location1: CLLocationCoordinate2D, to location2: CLLocationCoordinate2D) -> Double {
+    private func calculateDistance(from location1: CLLocationCoordinate2D, to location2: CLLocationCoordinate2D) -> Double {
         let earthRadius = 6371.0 // 지구 반지름 (단위: 킬로미터)
 
         let lat1Rad = degreesToRadians(degrees: location1.latitude)
@@ -235,7 +246,7 @@ struct MapViewSwiftUI_1: View {
         return distance
     }
 
-    func degreesToRadians(degrees: Double) -> Double {
+    private func degreesToRadians(degrees: Double) -> Double {
         return degrees * .pi / 180.0
     }
 
