@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D411CF52A4ECD5800C62AE4 /* MapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */; };
 		8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */; };
+		8D7B19012A53DD0B0079A0E3 /* StepCountMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B19002A53DD0B0079A0E3 /* StepCountMapView.swift */; };
 		8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */; };
 		8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635D2A4D1C0800E6D5DC /* ContentView.swift */; };
 		8D9063602A4D1C0900E6D5DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI.swift; sourceTree = "<group>"; };
 		8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
+		8D7B19002A53DD0B0079A0E3 /* StepCountMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountMapView.swift; sourceTree = "<group>"; };
 		8D9063582A4D1C0800E6D5DC /* StepCountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepCountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppApp.swift; sourceTree = "<group>"; };
 		8D90635D2A4D1C0800E6D5DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */,
 				8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */,
 				8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */,
+				8D7B19002A53DD0B0079A0E3 /* StepCountMapView.swift */,
 				8DA9ED232A4ED2E600029C71 /* MapViewManager.swift */,
 				8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */,
 				8D9063692A4D1CE000E6D5DC /* Info.plist */,
@@ -163,6 +166,7 @@
 				8DA9ED222A4ED14C00029C71 /* MapViewSwiftUI_1.swift in Sources */,
 				8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */,
 				8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */,
+				8D7B19012A53DD0B0079A0E3 /* StepCountMapView.swift in Sources */,
 				8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */,
 				8DA9ED242A4ED2E600029C71 /* MapViewManager.swift in Sources */,
 			);
