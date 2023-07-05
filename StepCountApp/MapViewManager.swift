@@ -10,12 +10,9 @@ import CoreData
 import MapKit
 
 final class MapViewManager: NSObject, ObservableObject {
-    @Published var currentLocation: CLLocation?
-    @Published var currentLocationDescription: String?
-    @Published var userHeading: Double = 0.0
-
+    var currentLocation: CLLocation?
+    @Published var userHeading: Double?
     @Published var pointSpotCoordinates: [PointSpotAnnotation] = []
-    @Published var goToCurrentUserLocation: Bool? = nil
 
     private let locationManager: CLLocationManager = CLLocationManager()
 
@@ -81,7 +78,13 @@ extension MapViewManager: CLLocationManagerDelegate {
         if newHeading.headingAccuracy < 0 { return }
 
         let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
-        userHeading = heading
+        if let userHeading {
+            if abs(userHeading - heading) > 10 {
+                self.userHeading = heading
+            }
+        } else {
+            self.userHeading = heading
+        }
     }
 
     // 위치 정보 업데이트
@@ -92,34 +95,15 @@ extension MapViewManager: CLLocationManagerDelegate {
         // 현재 정보 저장
         self.currentLocation = location
 
-        // 최초에 현재 보고 있는 위치로 이동
-        if goToCurrentUserLocation == nil { goToCurrentUserLocation = true }
-
         if pointSpotCoordinates.isEmpty {
             setPointSpotCoordinates()
-        }
-
-        if let currentLocation {
-            // Description을 위한 Location 업데이트
-            let roundedSpeed = currentLocation.speed.sign == .minus ? 0 : roundNumber(number: currentLocation.speed)
-            let rounededCourse = currentLocation.speed.sign == .minus ? 0 : roundNumber(number: currentLocation.course)
-            let roundedAltitude = currentLocation.altitude.sign == .minus ? 0 : roundNumber(number: currentLocation.altitude)
-
-            let description = LocationDescription(currentLocation,
-                                                                  speed: roundedSpeed,
-                                                                  course: rounededCourse,
-                                                                  altitude: roundedAltitude,
-                                                                  timeStamp: currentLocation.timestamp.koreaStringDate
-            ).getDescription()
-
-            self.currentLocationDescription = description
-
         }
     }
 
     // TODO: 위치를 가지고 오지 못할 때 에러 처리
     func locationManager(_ manager: CLLocationManager,
                          didFailWithError error: Error) {
+        print("Get Location Error: \(error)")
     }
 
     func getNewPoint() {
@@ -162,34 +146,6 @@ extension MapViewManager: CLLocationManagerDelegate {
 
         return CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
     }
-
-
-
-}
-
-struct LocationDescription: Equatable {
-
-    var latitude: String
-    var longitude: String
-    var speedInfo: String
-    var altitude: String
-    var timeStamp: String
-
-    func getDescription() -> String {
-        return [latitude,
-                longitude,
-                altitude,
-                speedInfo,
-                timeStamp].reduce("위치 정보") { $0 + "\n" + $1 }
-    }
-
-    init(_ location: CLLocation, speed: Double, course: Double, altitude: Double, timeStamp: String) {
-        self.latitude = "위도: \(location.coordinate.latitude)"
-        self.longitude = "경도: \(location.coordinate.longitude)"
-        self.speedInfo = "속도: \(speed)/ms 경로: \(course)º"
-        self.altitude = "고도: \(altitude)"
-        self.timeStamp = timeStamp
-    }
 }
 
 final class PointSpotAnnotation: NSObject, MKAnnotation {
@@ -201,14 +157,5 @@ final class PointSpotAnnotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
-    }
-}
-
-extension Date {
-    var koreaStringDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd a hh시 mm분"
-        formatter.locale = Locale(identifier: "ko_KR")
-        return formatter.string(from: self)
     }
 }

@@ -95,10 +95,7 @@ struct MapViewSwiftUI_1: View {
                     }
 
                     Button {
-                        guard let currentUserCoordinate = mapViewManager.currentLocation?.coordinate else { return }
-                        self.position = .region(.init(center: .init(latitude: currentUserCoordinate.latitude, longitude: currentUserCoordinate.longitude),
-                                                      latitudinalMeters: 700,
-                                                      longitudinalMeters: 700))
+                        position = .userLocation(followsHeading: true, fallback: .automatic)
                     } label: {
                         HStack {
                             Image(systemName: "location.fill")
@@ -114,8 +111,6 @@ struct MapViewSwiftUI_1: View {
                     }
                 }
                 .padding([.leading, .trailing], 15)
-
-
 
                 ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 25)
@@ -195,11 +190,6 @@ struct MapViewSwiftUI_1: View {
     }
 }
 
-#Preview{
-    MapViewSwiftUI_1()
-}
-
-
 extension CLLocationCoordinate2D: Hashable {
     public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
         lhs.longitude == rhs.longitude && lhs.latitude == rhs.longitude
@@ -220,4 +210,9 @@ extension MKCoordinateRegion {
     static let 판교역Region = MKCoordinateRegion(
         center: .판교경위도,
         span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
+}
+
+
+#Preview{
+    MapViewSwiftUI_1()
 }
