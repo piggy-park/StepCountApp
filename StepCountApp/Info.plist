@@ -7,10 +7,10 @@
 	<key>NSLocationUsageDescription</key>
 	<string>위치 권한좀 주세요 제발~~</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>위치 권한좀 주세요 제발~~~</string>
+	<string>사용자 위치 추적을 위해 권한을 허용해주세요.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>위치 권한좀 주세요 제발 ~~~~~</string>
 	<key>NSMotionUsageDescription</key>
-	<string>모션 권한좀 주세요 제발~~~~~</string>
+	<string>발걸음수 측정을 위해 권한을 허용해주세요.</string>
 </dict>
 </plist>

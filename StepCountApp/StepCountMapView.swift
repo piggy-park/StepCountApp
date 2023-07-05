@@ -9,22 +9,35 @@ import SwiftUI
 import MapKit
 
 struct StepCountMapView: View {
+    private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
+
     @ObservedObject var mapViewManager: MapViewManager
-    @State private var selectedPoint: PointSpotAnnotation?
     @State private var polyLines: [[CLLocationCoordinate2D]] = []
     @State private var currentPolyLine: [CLLocationCoordinate2D] = []
+    @Binding var selectedPoint: PointSpotAnnotation?
     @Binding var position: MapCameraPosition
+    @Binding var drawPolyLine: Bool
     @Binding var showPolyLine: Bool
 
     var body: some View {
             Map(position: $position) {
-                UserAnnotation {
+                UserAnnotation { location in
                     ZStack {
                         Circle()
                             .foregroundStyle(.orange)
                         Circle()
                             .foregroundStyle(.white)
                             .padding(5)
+                    }
+                    .onChange(of: location) { oldValue, newValue in
+                        if let currentLocation = oldValue.location?.coordinate {
+                            if drawPolyLine {
+                                currentPolyLine.append(currentLocation)
+                                addPolyLine(currentPolyLine)
+                            } else {
+                                currentPolyLine = []
+                            }
+                        }
                     }
                 }
 
@@ -51,6 +64,7 @@ struct StepCountMapView: View {
                                 .frame(width: 30, height: 30)
                                 .onTapGesture {
                                     self.selectedPoint = point
+                                    hapticGenerator.impactOccurred()
                             }
                         }
                     }
@@ -65,13 +79,7 @@ struct StepCountMapView: View {
                 }
             }
         }
-        .onChange(of: mapViewManager.lineCoordinates) { _, newValue in
-            if mapViewManager.drawPolyLine {
-                let polyLine = newValue.map { $0.coordinate }
-                addPolyLine(polyLine)
-            }
-        }
-        .onChange(of: mapViewManager.drawPolyLine) { oldValue, newValue in
+        .onChange(of: drawPolyLine) { oldValue, newValue in
             // 기록 중지시 현재까지 기록된 polyline polyline배열에 추가
             if oldValue == true && newValue == false {
                 self.polyLines.append(self.currentPolyLine)
@@ -81,11 +89,16 @@ struct StepCountMapView: View {
 
     // 그려져야할 polyLine의 배열에 마지막으로 현재 polyline 저장
     private func addPolyLine(_ polyLine: [CLLocationCoordinate2D]) {
-        self.currentPolyLine = polyLine
         if !polyLines.isEmpty {
             polyLines[polyLines.count - 1] = polyLine
         } else {
             polyLines.append([.init()])
         }
+    }
+}
+
+extension UserLocation: Equatable {
+    public static func == (lhs: UserLocation, rhs: UserLocation) -> Bool {
+        lhs.location?.coordinate == lhs.location?.coordinate
     }
 }

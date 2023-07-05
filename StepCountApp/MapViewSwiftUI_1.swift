@@ -10,7 +10,7 @@ import MapKit
 
 struct MapViewSwiftUI_1: View {
     @Environment(\.colorScheme) private var colorScheme
-    private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
+
     // 목표까지 예상 걸음 수 계산
     private let commonStepSize: Double = 0.0007 // 70cm
     private let commonStepSpeed: Double = 4 // 시속 4km
@@ -18,6 +18,7 @@ struct MapViewSwiftUI_1: View {
     @StateObject private var mapViewManager: MapViewManager = .init()
     @State private var position: MapCameraPosition = .automatic
     @State private var showPolyLine: Bool = false
+    @State private var drawPolyLine: Bool = false
     @State private var selectedPoint: PointSpotAnnotation?
 
     @State private var distanceFromCurrentLocation: String?
@@ -27,7 +28,9 @@ struct MapViewSwiftUI_1: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             StepCountMapView(mapViewManager: mapViewManager,
+                             selectedPoint: $selectedPoint,
                              position: $position,
+                             drawPolyLine: $drawPolyLine,
                              showPolyLine: $showPolyLine)
             buildButtons()
         }
@@ -43,7 +46,6 @@ struct MapViewSwiftUI_1: View {
         })
         .onChange(of: selectedPoint) { _, newValue in
             guard let newValue = newValue else { return }
-            hapticGenerator.impactOccurred()
             setDetailInfoToDestination(newValue.coordinate)
         }
     }
@@ -54,17 +56,17 @@ struct MapViewSwiftUI_1: View {
             VStack(alignment: .trailing) {
                 HStack(spacing: 16) {
                     Button {
-                        mapViewManager.drawPolyLine.toggle()
+                        drawPolyLine.toggle()
                     } label: {
                         HStack {
-                            if mapViewManager.drawPolyLine {
+                            if drawPolyLine {
                                 Image(systemName: "stop.circle.fill")
                                     .foregroundStyle(.orange)
                             } else {
                                 Image(systemName: "record.circle")
                                     .foregroundStyle(.orange)
                             }
-                            Text(mapViewManager.drawPolyLine ? "기록 중지" : "기록 시작")
+                            Text(drawPolyLine ? "기록 중지" : "기록 시작")
                                 .foregroundStyle(colorScheme == .light ? .white : .black)
                         }
                         .padding(8)

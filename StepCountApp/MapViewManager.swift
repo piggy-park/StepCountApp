@@ -13,10 +13,8 @@ final class MapViewManager: NSObject, ObservableObject {
     @Published var currentLocation: CLLocation?
     @Published var currentLocationDescription: String?
     @Published var userHeading: Double = 0.0
-    // Recorded Coordinates
-    @Published var lineCoordinates: [CLLocation] = []
+
     @Published var pointSpotCoordinates: [PointSpotAnnotation] = []
-    @Published var drawPolyLine: Bool = false
     @Published var goToCurrentUserLocation: Bool? = nil
 
     private let locationManager: CLLocationManager = CLLocationManager()
@@ -41,7 +39,6 @@ final class MapViewManager: NSObject, ObservableObject {
         locationManager.desiredAccuracy = accuracy
         locationManager.distanceFilter = 10
         locationManager.headingFilter = 0.1
-
     }
 
     // 앱 권한별 상태 설정
@@ -97,13 +94,6 @@ extension MapViewManager: CLLocationManagerDelegate {
 
         // 최초에 현재 보고 있는 위치로 이동
         if goToCurrentUserLocation == nil { goToCurrentUserLocation = true }
-
-        // draw polyline
-        if drawPolyLine {
-            self.lineCoordinates.append(location)
-        } else if !lineCoordinates.isEmpty {
-            self.lineCoordinates = []
-        }
 
         if pointSpotCoordinates.isEmpty {
             setPointSpotCoordinates()
