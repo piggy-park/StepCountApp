@@ -34,7 +34,7 @@ struct StepCountView: View {
                         .fill(.blue)
                         .overlay {
                             Text("내 주변 보기")
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                         }
                         .frame(width: 100, height: 32)
                     

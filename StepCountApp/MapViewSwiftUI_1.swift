@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 
 struct MapViewSwiftUI_1: View {
+    @Environment(\.colorScheme) private var colorScheme
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
     // 목표까지 예상 걸음 수 계산
     private let commonStepSize: Double = 0.0007 // 70cm
@@ -30,7 +31,6 @@ struct MapViewSwiftUI_1: View {
                              showPolyLine: $showPolyLine)
             buildButtons()
         }
-        .ignoresSafeArea()
         .onAppear {
             mapViewManager.startUpdatingLocation()
         }
@@ -65,7 +65,7 @@ struct MapViewSwiftUI_1: View {
                                     .foregroundStyle(.orange)
                             }
                             Text(mapViewManager.drawPolyLine ? "기록 중지" : "기록 시작")
-                                .foregroundStyle(.white)
+                                .foregroundStyle(colorScheme == .light ? .white : .black)
                         }
                         .padding(8)
                         .background {
@@ -83,7 +83,7 @@ struct MapViewSwiftUI_1: View {
                             Text("경로 보기")
                                 .lineLimit(1)
                                 .fixedSize()
-                                .foregroundStyle(.white)
+                                .foregroundStyle(colorScheme == .light ? .white : .black)
                         }
                     }
                     .padding(8)
@@ -102,7 +102,7 @@ struct MapViewSwiftUI_1: View {
                             Image(systemName: "location.fill")
                                 .foregroundStyle(.orange)
                             Text("내 위치")
-                                .foregroundStyle(.white)
+                                .foregroundStyle(colorScheme == .light ? .white : .black)
                         }
                         .padding(8)
                         .background {
@@ -130,11 +130,11 @@ struct MapViewSwiftUI_1: View {
                                 .fontWeight(.bold)
                             Spacer().frame(height: 16)
                             Text("현재 위치에서 \(estimatedStepCount ?? 0)걸음 • \(estimatedTimeOfArrival ?? 0)분 예상")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(colorScheme == .light ? .white : .black)
                                 .fontWeight(.bold)
                             if let distanceFromCurrentLocation {
                                 Text("거리: \(distanceFromCurrentLocation)KM")
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(colorScheme == .light ? .white : .black)
                             }
                         }
                         .padding(.top, 30)
@@ -143,13 +143,13 @@ struct MapViewSwiftUI_1: View {
                         Image(systemName: "figure.run.circle")
                             .resizable()
                             .frame(width: 80, height: 80)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(colorScheme == .light ? .white : .black)
 
                     }
                 }
                 .frame(height: 180)
                 .padding([.leading, .trailing], 15)
-                .padding(.bottom, 25)
+                .padding(.bottom, 10)
 
             }
         }
