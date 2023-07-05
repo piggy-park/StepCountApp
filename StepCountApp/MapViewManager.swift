@@ -79,7 +79,7 @@ extension MapViewManager: CLLocationManagerDelegate {
 
         let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
         if let userHeading {
-            if abs(userHeading - heading) > 10 {
+            if abs(userHeading - heading) > 5 {
                 self.userHeading = heading
             }
         } else {

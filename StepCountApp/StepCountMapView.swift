@@ -19,24 +19,26 @@ struct StepCountMapView: View {
     @Binding var position: MapCameraPosition
     @Binding var drawPolyLine: Bool
     @Binding var showPolyLine: Bool
-    @State private var degree = 10.0
+//    @State private var degree: Double = 0.0
     @ViewBuilder
     private func buildCustomUserView() -> some View {
         // TODO: 정사각형
-        GeometryReader { reader in
-            ZStack {
-                InvertedTriangle()
-                    .fill(Gradient(colors: [.clear, .orange]))
-                    .opacity(0.5)
-                    .frame(height: 60)
-
-                Circle()
-                    .foregroundStyle(.orange)
-                Circle()
-                    .foregroundStyle(.white)
-                    .padding(5)
-            }
+        ZStack {
+            InvertedTriangle()
+                .fill(Gradient(colors: [.clear, .orange]))
+                .opacity(0.5)
+                .frame(width: 30, height: 50)
+                .offset(y: -20)
+            Circle()
+                .foregroundStyle(.orange)
+                .frame(height: 20)
+            Circle()
+                .foregroundStyle(.white)
+                .padding(5)
+                .frame(height: 20)
         }
+        .animation(.easeIn(duration: 0.2), value: mapViewManager.userHeading)
+        .rotationEffect(.init(degrees: mapViewManager.userHeading ?? 0.0))
     }
 
     var body: some View {
@@ -54,10 +56,7 @@ struct StepCountMapView: View {
                                 }
                             }
                         }
-                        .onChange(of: degree) { oldValue, newValue in
-                            print("change!2")
-                        }
-                        .rotationEffect(.init(degrees: degree))
+
                 }
 
                 ForEach(mapViewManager.pointSpotCoordinates, id: \.self) { point in
@@ -98,12 +97,6 @@ struct StepCountMapView: View {
                     }
                 }
             }
-            Button("taptap") {
-                self.degree += 10
-                self.position = .automatic
-            }
-            .padding()
-            .background(.red)
         }
         .onChange(of: drawPolyLine) { oldValue, newValue in
             // 기록 중지시 현재까지 기록된 polyline polyline배열에 추가
