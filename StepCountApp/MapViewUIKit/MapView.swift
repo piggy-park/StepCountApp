@@ -269,10 +269,13 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
 
     func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
         if headingView == nil {
-            let triangleView = UIView.init(frame: .init(origin: .zero, size: .init(width: 50, height: 50)))
+            let customHeadingView = TriangleView(frame: .init(origin: .init(x: -(annotationView.frame.width / 2),
+                                                             y: -(annotationView.frame.height / 2)),
+                                               size: .init(width: (annotationView.frame.width * 2),
+                                                           height: (annotationView.frame.height * 2))))
 
-            triangleView.backgroundColor = .blue
-            headingView = triangleView
+            customHeadingView.backgroundColor = .clear
+            headingView = customHeadingView
             headingView?.layer.zPosition = -1
             annotationView.addSubview(headingView!)
         }
@@ -291,7 +294,6 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
             let customUserAnnotationView: MKAnnotationView = .init(annotation: annotation, reuseIdentifier: "UserAnnotation")
             // TODO: add Custom Image
             customUserAnnotationView.image = UIImage(systemName: "circle.fill")
-            customUserAnnotationView.backgroundColor = .red
             return customUserAnnotationView
         }
         return nil
@@ -333,9 +335,9 @@ class TriangleView : UIView {
         guard let context = UIGraphicsGetCurrentContext() else { return }
 
         context.beginPath()
-        context.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        context.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        context.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        context.move(to: CGPoint(x: rect.midX, y: (rect.maxY * 0.2) ))
+        context.addLine(to: CGPoint(x: (rect.maxX * 0.2), y: rect.maxY))
+        context.addLine(to: CGPoint(x: (rect.maxX * 0.8), y: rect.maxY))
         context.closePath()
 
         context.setFillColor(red: 1.0, green: 0.5, blue: 0.0, alpha: 0.60)
