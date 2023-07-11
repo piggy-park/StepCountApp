@@ -269,12 +269,17 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
 
     func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
         if headingView == nil {
-            let customHeadingView = TriangleView(frame: .init(origin: .init(x: -(annotationView.frame.width / 2),
-                                                             y: -(annotationView.frame.height / 2)),
-                                               size: .init(width: (annotationView.frame.width * 2),
-                                                           height: (annotationView.frame.height * 2))))
+            // 회전축
+            let centerPoint: CGPoint = .init(x: annotationView.frame.width / 2,
+                                             y: annotationView.frame.height / 2)
+            // 크기 조절
+            let multiple = 4.0
+            let customHeadingView = GradientTriangleView(frame: .init(origin: .init(
+                x: -multiple * (centerPoint.x),
+                y: -multiple * (centerPoint.y)), size:
+                    .init(width: (annotationView.frame.width * (multiple + 1)),
+                          height: (annotationView.frame.height * (multiple + 1)))))
 
-            customHeadingView.backgroundColor = .clear
             headingView = customHeadingView
             headingView?.layer.zPosition = -1
             annotationView.addSubview(headingView!)
@@ -319,28 +324,46 @@ extension Date {
     }
 }
 
-class TriangleView : UIView {
-
+final class GradientTriangleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = UIColor.clear
     }
 
-    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        backgroundColor = UIColor.clear
     }
 
     override func draw(_ rect: CGRect) {
-
         guard let context = UIGraphicsGetCurrentContext() else { return }
 
-        context.beginPath()
-        context.move(to: CGPoint(x: rect.midX, y: (rect.maxY * 0.2) ))
-        context.addLine(to: CGPoint(x: (rect.maxX * 0.2), y: rect.maxY))
-        context.addLine(to: CGPoint(x: (rect.maxX * 0.8), y: rect.maxY))
-        context.closePath()
+        let trianglePath = UIBezierPath()
+        trianglePath.move(to: CGPoint(x: rect.midX, y: rect.midY))
+        trianglePath.addLine(to: CGPoint(x: rect.maxX * 0.2, y: rect.maxY))
+        trianglePath.addLine(to: CGPoint(x: rect.maxX * 0.8, y: rect.maxY))
+        trianglePath.close()
 
-        context.setFillColor(red: 1.0, green: 0.5, blue: 0.0, alpha: 0.60)
-        context.fillPath()
+        context.saveGState()
+        trianglePath.addClip()
+
+        let colors = [
+            UIColor.blue.withAlphaComponent(1.0).cgColor,
+            UIColor.orange.withAlphaComponent(0.75).cgColor,
+            UIColor.orange.withAlphaComponent(0.5).cgColor,
+            UIColor.orange.withAlphaComponent(0.25).cgColor,
+            UIColor.clear.cgColor
+        ]
+
+        let locations: [CGFloat] = [0.0, 0.25, 0.5, 0.75, 1.0]
+
+        if let gradient = CGGradient(colorsSpace: nil, colors: colors as CFArray, locations: locations) {
+            let startPoint = CGPoint(x: rect.midX, y: rect.midY)
+            let endPoint = CGPoint(x: rect.midX, y: rect.maxY)
+
+            context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
+        }
+
+        context.restoreGState()
     }
 }
