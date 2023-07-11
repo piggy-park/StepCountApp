@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import MapKit
 
-final class MapViewManager: NSObject, ObservableObject {
+final class MapViewModelSwiftUI: NSObject, ObservableObject {
     var currentLocation: CLLocation?
     @Published var userHeading: Double?
     @Published var pointSpotCoordinates: [PointSpotAnnotation] = []
@@ -62,7 +62,7 @@ final class MapViewManager: NSObject, ObservableObject {
     }
 }
 
-extension MapViewManager: CLLocationManagerDelegate {
+extension MapViewModelSwiftUI: CLLocationManagerDelegate {
     // 권한이 바뀌었을 때
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         Task {

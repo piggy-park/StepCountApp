@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		8D411CF52A4ECD5800C62AE4 /* MapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */; };
 		8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */; };
-		8D7B19012A53DD0B0079A0E3 /* StepCountMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B19002A53DD0B0079A0E3 /* StepCountMapView.swift */; };
+		8D4967072A57DB27001EDF38 /* DestinationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */; };
+		8D61C52A2A5BA5820085900D /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D61C5292A5BA5820085900D /* UserAnnotation.swift */; };
+		8D7B19012A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */; };
 		8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */; };
 		8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635D2A4D1C0800E6D5DC /* ContentView.swift */; };
 		8D9063602A4D1C0900E6D5DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */; };
 		8D9063632A4D1C0900E6D5DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9063622A4D1C0900E6D5DC /* Preview Assets.xcassets */; };
 		8DA9ED222A4ED14C00029C71 /* MapViewSwiftUI_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */; };
-		8DA9ED242A4ED2E600029C71 /* MapViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9ED232A4ED2E600029C71 /* MapViewManager.swift */; };
+		8DA9ED242A4ED2E600029C71 /* MapViewModelSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */; };
+		8DB4AE0D2A56C2C100164699 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4AE0C2A56C2C100164699 /* MapView.swift */; };
+		8DB4AE0F2A56C2F200164699 /* MapViewLocationMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4AE0E2A56C2F200164699 /* MapViewLocationMananger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI.swift; sourceTree = "<group>"; };
 		8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
-		8D7B19002A53DD0B0079A0E3 /* StepCountMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountMapView.swift; sourceTree = "<group>"; };
+		8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailView.swift; sourceTree = "<group>"; };
+		8D61C5292A5BA5820085900D /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountMapViewSwiftUI.swift; sourceTree = "<group>"; };
 		8D9063582A4D1C0800E6D5DC /* StepCountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepCountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppApp.swift; sourceTree = "<group>"; };
 		8D90635D2A4D1C0800E6D5DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -29,7 +35,9 @@
 		8D9063622A4D1C0900E6D5DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D9063692A4D1CE000E6D5DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI_1.swift; sourceTree = "<group>"; };
-		8DA9ED232A4ED2E600029C71 /* MapViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewManager.swift; sourceTree = "<group>"; };
+		8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelSwiftUI.swift; sourceTree = "<group>"; };
+		8DB4AE0C2A56C2C100164699 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		8DB4AE0E2A56C2F200164699 /* MapViewLocationMananger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewLocationMananger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +74,9 @@
 				8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */,
 				8D90635D2A4D1C0800E6D5DC /* ContentView.swift */,
 				8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */,
-				8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */,
-				8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */,
-				8D7B19002A53DD0B0079A0E3 /* StepCountMapView.swift */,
-				8DA9ED232A4ED2E600029C71 /* MapViewManager.swift */,
+				8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */,
+				8DB4AE102A56C2F900164699 /* MapViewUIKit */,
+				8DB4AE112A56C33800164699 /* MapViewSwiftUI */,
 				8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */,
 				8D9063692A4D1CE000E6D5DC /* Info.plist */,
 				8D9063612A4D1C0900E6D5DC /* Preview Content */,
@@ -83,6 +90,27 @@
 				8D9063622A4D1C0900E6D5DC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8DB4AE102A56C2F900164699 /* MapViewUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				8DB4AE0C2A56C2C100164699 /* MapView.swift */,
+				8DB4AE0E2A56C2F200164699 /* MapViewLocationMananger.swift */,
+				8D61C5292A5BA5820085900D /* UserAnnotation.swift */,
+			);
+			path = MapViewUIKit;
+			sourceTree = "<group>";
+		};
+		8DB4AE112A56C33800164699 /* MapViewSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */,
+				8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */,
+				8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */,
+				8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */,
+			);
+			path = MapViewSwiftUI;
 			sourceTree = "<group>";
 		};
 		A0AC7C1B89979849593E434A /* Pods */ = {
@@ -166,9 +194,13 @@
 				8DA9ED222A4ED14C00029C71 /* MapViewSwiftUI_1.swift in Sources */,
 				8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */,
 				8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */,
-				8D7B19012A53DD0B0079A0E3 /* StepCountMapView.swift in Sources */,
+				8D4967072A57DB27001EDF38 /* DestinationDetailView.swift in Sources */,
+				8D7B19012A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift in Sources */,
+				8D61C52A2A5BA5820085900D /* UserAnnotation.swift in Sources */,
 				8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */,
-				8DA9ED242A4ED2E600029C71 /* MapViewManager.swift in Sources */,
+				8DA9ED242A4ED2E600029C71 /* MapViewModelSwiftUI.swift in Sources */,
+				8DB4AE0D2A56C2C100164699 /* MapView.swift in Sources */,
+				8DB4AE0F2A56C2F200164699 /* MapViewLocationMananger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +329,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
-				DEVELOPMENT_TEAM = N6KUR9465F;
+				DEVELOPMENT_TEAM = KVQ3SYH7AU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
@@ -306,6 +338,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,7 +360,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
-				DEVELOPMENT_TEAM = N6KUR9465F;
+				DEVELOPMENT_TEAM = KVQ3SYH7AU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
@@ -336,6 +369,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
