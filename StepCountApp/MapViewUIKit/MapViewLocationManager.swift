@@ -19,7 +19,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
     private let locationManager: CLLocationManager = CLLocationManager()
     private var currentPolyline: [CLLocation] = []
     var pointSpotCoordinates: [PointSpotAnnotation] = []
-
+    var savePolyLine: Bool = false
     @Published var selectedPoinSpot: PointSpotAnnotation?
     @Published var locationUpdateStatus: LocationUpdateStatus = .none
     @Published var drawPolyline: Bool = false
@@ -142,10 +142,13 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
             } else {
                 self.polylines.append([])
             }
-        } else {
-            currentPolyline = []
         }
 
+        if savePolyLine {
+            polylines.append(currentPolyline)
+            currentPolyline = []
+        }
+        
         // For point Spot
         if pointSpotCoordinates.isEmpty {
             setPointSpotCoordinates()
@@ -155,6 +158,7 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
         if locationUpdateStatus == .none {
             self.locationUpdateStatus = .startUpdating
         }
+
     }
 
     // TODO: 위치를 가지고 오지 못할 때 에러 처리

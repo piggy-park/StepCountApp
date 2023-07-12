@@ -15,7 +15,7 @@ struct MapView: View {
     private let commonStepSpeed: Double = 4 // 시속 4km
 
     @StateObject private var locationManager: MapViewLocationManager = .init()
-    @State private var trackingMode: MKUserTrackingMode = .followWithHeading
+    @State private var trackingMode: MKUserTrackingMode = .follow
     @State private var showPolyLine: Bool = false
     @State private var goToCurrentUserLocation: Bool = false
 
@@ -56,7 +56,14 @@ struct MapView: View {
             VStack(alignment: .trailing) {
                 HStack(spacing: 16) {
                     Button {
+                        let previousValue = locationManager.drawPolyline
                         locationManager.drawPolyline.toggle()
+                        let newValue = locationManager.drawPolyline
+                        if previousValue == true && newValue == false {
+                            locationManager.savePolyLine = true
+                        } else {
+                            locationManager.savePolyLine = false
+                        }
                     } label: {
                         HStack {
                             if locationManager.drawPolyline {
@@ -238,8 +245,8 @@ struct MapViewUIKit: UIViewRepresentable {
             }
         }
 
-        // draw & show polyline
-        if locationManager.drawPolyline && showPolyLine {
+        // show polyline
+        if showPolyLine {
             for polyline in locationManager.polylines {
                 let otherPolyline = MKPolyline(coordinates: polyline.map { $0.coordinate },
                                                count: polyline.count)
