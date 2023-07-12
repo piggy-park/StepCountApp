@@ -49,7 +49,7 @@ struct StepCountView: View {
             stepsManager.updateSteps() // update when data change
         }
         .fullScreenCover(isPresented: $showMap) {
-            MapView()
+            MapViewSwiftUI_1()
         }
 
     }
