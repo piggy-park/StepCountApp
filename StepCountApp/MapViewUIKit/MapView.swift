@@ -313,8 +313,10 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
     func updateHeadingRotation() {
         if let heading = parent.locationManager.userHeading,
            let headingView {
-            let rotation = CGFloat(heading / 180 * Double.pi)
-            headingView.transform = CGAffineTransform(rotationAngle: rotation)
+            let rotation = CGFloat(heading * Double.pi / 180)
+            UIView.animate(withDuration: 0.3) {
+                headingView.transform = CGAffineTransform(rotationAngle: rotation)
+            }
         }
     }
 
@@ -329,7 +331,6 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
         annotationView.annotation = annotation
         annotationView.displayPriority = .required
         annotationView.canShowCallout = true
-
 
         return annotationView
     }

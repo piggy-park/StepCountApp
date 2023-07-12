@@ -75,18 +75,18 @@ final class MapViewLocationManager: NSObject, ObservableObject {
 
     private func setPointSpotCoordinates() {
         let currentCoordinate = currentLocation.coordinate
-            if pointSpotCoordinates.isEmpty {
-                let location1 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 0)
-                let location2 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 90)
-                let location3 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 180)
-                let location4 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 270)
+        if pointSpotCoordinates.isEmpty {
+            let location1 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 0)
+            let location2 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 90)
+            let location3 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 180)
+            let location4 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 270)
 
 
-                pointSpotCoordinates.append(contentsOf: [PointSpotAnnotation(coordinate: location1, title: "spot1", subtitle: ""),
-                                                         PointSpotAnnotation(coordinate: location2, title: "spot2", subtitle: ""),
-                                                         PointSpotAnnotation(coordinate: location3, title: "spot3", subtitle: ""),
-                                                         PointSpotAnnotation(coordinate: location4, title: "spot4", subtitle: "")]
-                )
+            pointSpotCoordinates.append(contentsOf: [PointSpotAnnotation(coordinate: location1, title: "spot1", subtitle: ""),
+                                                     PointSpotAnnotation(coordinate: location2, title: "spot2", subtitle: ""),
+                                                     PointSpotAnnotation(coordinate: location3, title: "spot3", subtitle: ""),
+                                                     PointSpotAnnotation(coordinate: location4, title: "spot4", subtitle: "")]
+            )
         }
     }
 
@@ -122,10 +122,15 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
 
     // 각도
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-         if newHeading.headingAccuracy < 0 { return }
-
-         let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
-         userHeading = heading
+        if newHeading.headingAccuracy < 0 { return }
+        let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
+        if let beforeHeading = userHeading {
+            if abs(beforeHeading - heading) > 5 {
+                self.userHeading = heading
+            }
+        } else {
+            self.userHeading = heading
+        }
     }
 
     // 위치 정보 업데이트

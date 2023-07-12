@@ -32,11 +32,11 @@ final class UserLocationAnnotationView: MKAnnotationView {
         let innerCircleCenter = outerCircleCenter
 
         let outerCirclePath = UIBezierPath(arcCenter: outerCircleCenter, radius: outerCircleRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
-        UIColor.white.setFill()
+        UIColor.orange.setFill()
         outerCirclePath.fill()
 
         let innerCirclePath = UIBezierPath(arcCenter: innerCircleCenter, radius: innerCircleRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
-        UIColor.orange.setFill()
+        UIColor.white.setFill()
         innerCirclePath.fill()
     }
     
