@@ -45,7 +45,7 @@ struct StepCountView: View {
             }
         }
         .onAppear {
-            stepsManager.getSteps() // get current step count
+            stepsManager.getSteps()    // get current step count
             stepsManager.updateSteps() // update when data change
         }
         .fullScreenCover(isPresented: $showMap) {
@@ -70,20 +70,41 @@ final class StepsMananger: ObservableObject {
     private var isPedometerIsAvailable: Bool {
         return CMPedometer.isStepCountingAvailable()
     }
-
+    var stepsForWeek: [Int] = []
     @Published var steps: Int?
 
     func getSteps() {
-        let startDate = Calendar.current.startOfDay(for: Date())
+        let calendar = Calendar.current
+        let startDate = calendar.startOfDay(for: Date())
+
         pedometer.queryPedometerData(from: startDate, to: Date()) { [weak self] data, error in
             guard let data = data,
                   let self = self,
                   error == nil else { return }
+
             DispatchQueue.main.async {
                 self.steps = data.numberOfSteps.intValue
                 print("Current Step Counts", data.numberOfSteps.intValue)
             }
         }
+
+        for n in 1...7 {
+            let nDayAgo = calendar.date(byAdding: .day, value: -n, to: startDate)!
+            pedometer.queryPedometerData(from: nDayAgo, to: startDate) { [weak self] data, error in
+                guard let data = data,
+                      let self = self,
+                      error == nil else { return }
+                if stepsForWeek.isEmpty {
+                    self.stepsForWeek.append(data.numberOfSteps.intValue)
+                } else {
+                    let totalStepCount = data.numberOfSteps.intValue
+                    let stepCountNDayAgo = stepsForWeek.reduce(0) { $0 + $1 }
+                    let stepPerDay = totalStepCount - stepCountNDayAgo
+                    self.stepsForWeek.append(stepPerDay)
+                }
+            }
+        }
+
     }
 
     func updateSteps() {
@@ -103,4 +124,21 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         StepCountView().preferredColorScheme(.dark)
     }
+}
+
+extension Date {
+    public var removeTimeStamp : Date? {
+       guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: self)) else {
+        return nil
+       }
+       return date
+   }
+
+    func dateWithoutTime() -> Date {
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: self)
+        guard let dateWithoutTime = calendar.date(from: dateComponents) else { return Date() }
+        return dateWithoutTime
+    }
+
 }

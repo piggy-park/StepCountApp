@@ -30,7 +30,7 @@ final class PointSpotAnnotationView: MKAnnotationView {
         self.layer.cornerRadius = self.frame.height / 2
     }
 
-    // TODO: handle Tap Gesture if want
+    // MARK: -- handle Tap Gesture if want
 //    private func setupGestureRecognizers() {
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
 //        addGestureRecognizer(tapGesture)

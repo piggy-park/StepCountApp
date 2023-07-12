@@ -30,7 +30,7 @@ final class UserLocationAnnotationView: MKAnnotationView {
 }
 
 
-class UserView: UIView {
+final class UserView: UIView {
     private let size: CGSize = .init(width: 20, height: 20)
 
     override init(frame: CGRect) {
