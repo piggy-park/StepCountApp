@@ -14,7 +14,7 @@ struct MapView: View {
     private let commonStepSize: Double = 0.0007 // 70cm
     private let commonStepSpeed: Double = 4 // 시속 4km
 
-    @StateObject private var locationManager: MapViewLocationMananger = .init()
+    @StateObject private var locationManager: MapViewLocationManager = .init()
     @State private var trackingMode: MKUserTrackingMode = .followWithHeading
     @State private var showPolyLine: Bool = false
     @State private var goToCurrentUserLocation: Bool = false
@@ -41,6 +41,10 @@ struct MapView: View {
         }
         .onDisappear {
             locationManager.stopUpdatingLocation()
+        }
+        .onChange(of: locationManager.selectedPoinSpot) { newSpot in
+            guard let newSpot = newSpot else { return }
+            setDetailInfoToDestination(newSpot.coordinate)
         }
     }
 
@@ -131,18 +135,21 @@ struct MapView: View {
                             Text("현재 위치에서 \(estimatedStepCount)걸음 • \(estimatedTimeOfArrival)분 예상")
                                 .foregroundStyle(colorScheme == .light ? .white : .black)
                                 .fontWeight(.bold)
-                            Text("거리: \(distanceFromCurrentLocation)KM")
+                            Text("거리: \(distanceFromCurrentLocation ,specifier: "%.2f")KM")
                                 .foregroundStyle(colorScheme == .light ? .white : .black)
 
                         }
                         .padding(.top, 30)
                         .padding(.leading, 20)
 
+                        Spacer()
+
                         Image(systemName: "figure.run.circle")
                             .resizable()
                             .frame(width: 80, height: 80)
                             .foregroundStyle(colorScheme == .light ? .white : .black)
 
+                        Spacer().frame(width: 16)
                     }
                 }
                 .frame(height: 180)
@@ -193,13 +200,12 @@ struct MapView: View {
 }
 
 struct MapViewUIKit: UIViewRepresentable {
-
-    @ObservedObject var locationManager: MapViewLocationMananger
+    @ObservedObject var locationManager: MapViewLocationManager
     @Binding var trackingMode: MKUserTrackingMode
     @Binding var showPolyLine: Bool
     @Binding var goToCurrentUserLocation: Bool
 
-    init(locationManager: MapViewLocationMananger,
+    init(locationManager: MapViewLocationManager,
          trackingMode: Binding<MKUserTrackingMode>,
          showPolyLine: Binding<Bool>,
          goToCurrentUserLocation: Binding<Bool>)
@@ -213,12 +219,25 @@ struct MapViewUIKit: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
-        mapView.userTrackingMode = trackingMode
+        mapView.register(PointSpotAnnotationView.self, forAnnotationViewWithReuseIdentifier: PointSpotAnnotationView.ID)
+        mapView.register(UserLocationAnnotationView.self, forAnnotationViewWithReuseIdentifier: UserLocationAnnotationView.ID)
         return mapView
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
         context.coordinator.updateHeadingRotation()
+
+        if locationManager.locationUpdateStatus == .startUpdating {
+            view.userTrackingMode = trackingMode
+            view.region = .init(center: locationManager.currentLocation.coordinate,
+                                latitudinalMeters: 400,
+                                longitudinalMeters: 400)
+            view.addAnnotations(locationManager.pointSpotCoordinates)
+            DispatchQueue.main.async {
+                locationManager.locationUpdateStatus = .updating
+            }
+        }
+
         // draw & show polyline
         if locationManager.drawPolyline && showPolyLine {
             for polyline in locationManager.polylines {
@@ -228,7 +247,7 @@ struct MapViewUIKit: UIViewRepresentable {
             }
         }
 
-        // overlay로 추가했던 polyline을 모두 지움.
+        // remove all polyline
         if !showPolyLine {
             for overlay in view.overlays {
                 view.removeOverlay(overlay)
@@ -238,8 +257,8 @@ struct MapViewUIKit: UIViewRepresentable {
         // go to current Location
         if goToCurrentUserLocation {
             view.region = .init(center: locationManager.currentLocation.coordinate,
-                                latitudinalMeters: 1000,
-                                longitudinalMeters: 1000)
+                                latitudinalMeters: 400,
+                                longitudinalMeters: 400)
             DispatchQueue.main.async {
                 goToCurrentUserLocation = false
             }
@@ -261,9 +280,9 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        let userAnnotation = views.first { $0.annotation is MKUserLocation }
-        if let userAnnotation {
-            addHeadingView(toAnnotationView: userAnnotation)
+        let userAnnotationView = views.first { $0.annotation is MKUserLocation }
+        if let userAnnotationView {
+            addHeadingView(toAnnotationView: userAnnotationView)
         }
     }
 
@@ -273,12 +292,10 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
             let centerPoint: CGPoint = .init(x: annotationView.frame.width / 2,
                                              y: annotationView.frame.height / 2)
             // 크기 조절
-            let multiple = 4.0
+            let multiple = 3.0
             let customHeadingView = GradientTriangleView(frame: .init(origin: .init(
                 x: -multiple * (centerPoint.x),
-                y: -multiple * (centerPoint.y)), size:
-                    .init(width: (annotationView.frame.width * (multiple + 1)),
-                          height: (annotationView.frame.height * (multiple + 1)))))
+                y: -multiple * (centerPoint.y)), size: .init(width: (annotationView.frame.width * (multiple + 1)), height: (annotationView.frame.height * (multiple + 1)))))
 
             headingView = customHeadingView
             headingView?.layer.zPosition = -1
@@ -296,12 +313,18 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
-            let customUserAnnotationView: MKAnnotationView = .init(annotation: annotation, reuseIdentifier: "UserAnnotation")
-            // TODO: add Custom Image
-            customUserAnnotationView.image = UIImage(systemName: "circle.fill")
-            return customUserAnnotationView
+            guard let userLocationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: UserLocationAnnotationView.ID) as? UserLocationAnnotationView else { return nil }
+            return userLocationAnnotationView
         }
-        return nil
+
+        guard let pointSpot = annotation as? PointSpotAnnotation,
+              let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: PointSpotAnnotationView.ID) as? PointSpotAnnotationView else { return nil }
+        annotationView.annotation = annotation
+        annotationView.displayPriority = .required
+        annotationView.canShowCallout = true
+
+
+        return annotationView
     }
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -313,57 +336,10 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
         }
         return MKOverlayRenderer()
     }
-}
 
-extension Date {
-    var koreaStringDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd a hh시 mm분"
-        formatter.locale = Locale(identifier: "ko_KR")
-        return formatter.string(from: self)
-    }
-}
-
-final class GradientTriangleView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = UIColor.clear
+    func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+        guard let pointSpotAnnotation = annotation as? PointSpotAnnotation else { return }
+        self.parent.locationManager.selectedPoinSpot = pointSpotAnnotation
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        backgroundColor = UIColor.clear
-    }
-
-    override func draw(_ rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-
-        let trianglePath = UIBezierPath()
-        trianglePath.move(to: CGPoint(x: rect.midX, y: rect.midY))
-        trianglePath.addLine(to: CGPoint(x: rect.maxX * 0.2, y: rect.maxY))
-        trianglePath.addLine(to: CGPoint(x: rect.maxX * 0.8, y: rect.maxY))
-        trianglePath.close()
-
-        context.saveGState()
-        trianglePath.addClip()
-
-        let colors = [
-            UIColor.blue.withAlphaComponent(1.0).cgColor,
-            UIColor.orange.withAlphaComponent(0.75).cgColor,
-            UIColor.orange.withAlphaComponent(0.5).cgColor,
-            UIColor.orange.withAlphaComponent(0.25).cgColor,
-            UIColor.clear.cgColor
-        ]
-
-        let locations: [CGFloat] = [0.0, 0.25, 0.5, 0.75, 1.0]
-
-        if let gradient = CGGradient(colorsSpace: nil, colors: colors as CFArray, locations: locations) {
-            let startPoint = CGPoint(x: rect.midX, y: rect.midY)
-            let endPoint = CGPoint(x: rect.midX, y: rect.maxY)
-
-            context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
-        }
-
-        context.restoreGState()
-    }
 }

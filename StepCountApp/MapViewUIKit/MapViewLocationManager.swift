@@ -9,9 +9,19 @@ import Foundation
 import CoreData
 import MapKit
 
-final class MapViewLocationMananger: NSObject, ObservableObject {
+enum LocationUpdateStatus {
+    case none
+    case updating
+    case startUpdating
+}
+
+final class MapViewLocationManager: NSObject, ObservableObject {
     private let locationManager: CLLocationManager = CLLocationManager()
     private var currentPolyline: [CLLocation] = []
+    var pointSpotCoordinates: [PointSpotAnnotation] = []
+
+    @Published var selectedPoinSpot: PointSpotAnnotation?
+    @Published var locationUpdateStatus: LocationUpdateStatus = .none
     @Published var drawPolyline: Bool = false
     @Published var polylines: [[CLLocation]] = []
     @Published var userHeading: Double?
@@ -62,9 +72,45 @@ final class MapViewLocationMananger: NSObject, ObservableObject {
     private func roundNumber(_ with: Double = 100, number: Double) -> Double {
         return round(number * with) / with
     }
+
+    private func setPointSpotCoordinates() {
+        let currentCoordinate = currentLocation.coordinate
+            if pointSpotCoordinates.isEmpty {
+                let location1 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 0)
+                let location2 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 90)
+                let location3 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 180)
+                let location4 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 270)
+
+
+                pointSpotCoordinates.append(contentsOf: [PointSpotAnnotation(coordinate: location1, title: "spot1", subtitle: ""),
+                                                         PointSpotAnnotation(coordinate: location2, title: "spot2", subtitle: ""),
+                                                         PointSpotAnnotation(coordinate: location3, title: "spot3", subtitle: ""),
+                                                         PointSpotAnnotation(coordinate: location4, title: "spot4", subtitle: "")]
+                )
+        }
+    }
+
+    // 특정 경위도 기준 반경 N미터 떨어져있는 경위도
+    private func getCoordinateWithDistanceAndBearing(from centerCoordinate: CLLocationCoordinate2D, distance: CLLocationDistance, bearing: Double) -> CLLocationCoordinate2D {
+        let earthRadius: CLLocationDistance = 6371000 // 지구 반지름 (미터 단위)
+        let angularDistance = distance / earthRadius
+        let bearingRadians = bearing * .pi / 180
+
+        let centerLatitudeRadians = centerCoordinate.latitude * .pi / 180
+        let centerLongitudeRadians = centerCoordinate.longitude * .pi / 180
+
+        let newLatitudeRadians = asin(sin(centerLatitudeRadians) * cos(angularDistance) + cos(centerLatitudeRadians) * sin(angularDistance) * cos(bearingRadians))
+        let newLongitudeRadians = centerLongitudeRadians + atan2(sin(bearingRadians) * sin(angularDistance) * cos(centerLatitudeRadians), cos(angularDistance) - sin(centerLatitudeRadians) * sin(newLatitudeRadians))
+
+        let newLatitude = newLatitudeRadians * 180 / .pi
+        let newLongitude = newLongitudeRadians * 180 / .pi
+
+        return CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
+    }
+
 }
 
-extension MapViewLocationMananger: CLLocationManagerDelegate {
+extension MapViewLocationManager: CLLocationManagerDelegate {
     // 권한이 바뀌었을 때
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         Task {
@@ -80,20 +126,7 @@ extension MapViewLocationMananger: CLLocationManagerDelegate {
 
          let heading = newHeading.trueHeading > 0 ? newHeading.trueHeading : newHeading.magneticHeading
          userHeading = heading
-        }
-
-//    func locationManager(_ manager: CLLocationManager,
-//                         didUpdateHeading newHeading: CLHeading) {
-//        let newCurrentUserHeading = newHeading.trueHeading
-//
-//        if let userHeading {
-//            if abs(userHeading - newCurrentUserHeading) > 5 {
-//                self.userHeading = newCurrentUserHeading
-//            }
-//        } else {
-//            userHeading = newCurrentUserHeading
-//        }
-//    }
+    }
 
     // 위치 정보 업데이트
     func locationManager(_ manager: CLLocationManager,
@@ -111,6 +144,16 @@ extension MapViewLocationMananger: CLLocationManagerDelegate {
             }
         } else {
             currentPolyline = []
+        }
+
+        // For point Spot
+        if pointSpotCoordinates.isEmpty {
+            setPointSpotCoordinates()
+        }
+
+        // 최초 location을 가져오는 시점을 맞추기 위해 선언.
+        if locationUpdateStatus == .none {
+            self.locationUpdateStatus = .startUpdating
         }
     }
 
