@@ -32,7 +32,7 @@ final class GradientTriangleView: UIView {
         trianglePath.addClip()
 
         let colors = [
-            UIColor.blue.withAlphaComponent(1.0).cgColor,
+            UIColor.orange.withAlphaComponent(1.0).cgColor,
             UIColor.orange.withAlphaComponent(0.75).cgColor,
             UIColor.orange.withAlphaComponent(0.5).cgColor,
             UIColor.orange.withAlphaComponent(0.25).cgColor,

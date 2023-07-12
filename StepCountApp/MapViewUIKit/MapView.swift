@@ -286,13 +286,6 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
         self.parent = parent
     }
 
-    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        let userAnnotationView = views.first { $0.annotation is MKUserLocation }
-        if let userAnnotationView {
-            addHeadingView(toAnnotationView: userAnnotationView)
-        }
-    }
-
     func addHeadingView(toAnnotationView annotationView: MKAnnotationView) {
         if headingView == nil {
             // 회전축
@@ -305,8 +298,8 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
                 y: -multiple * (centerPoint.y)), size: .init(width: (annotationView.frame.width * (multiple + 1)), height: (annotationView.frame.height * (multiple + 1)))))
 
             headingView = customHeadingView
-            headingView?.layer.zPosition = -1
             annotationView.addSubview(headingView!)
+            headingView?.layer.zPosition = -1
         }
     }
 
@@ -323,6 +316,9 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             guard let userLocationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: UserLocationAnnotationView.ID) as? UserLocationAnnotationView else { return nil }
+            // HeadingView와의 Zindex 이슈로 밖에서 SubView넣어줌.
+            userLocationAnnotationView.addSubview(UserView())
+            addHeadingView(toAnnotationView: userLocationAnnotationView)
             return userLocationAnnotationView
         }
 

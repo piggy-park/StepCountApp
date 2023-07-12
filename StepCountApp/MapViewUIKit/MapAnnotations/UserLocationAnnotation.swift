@@ -22,6 +22,27 @@ final class UserLocationAnnotationView: MKAnnotationView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // TODO: ADD Custom Image or configure custom uiView
+    private func configure() {
+        self.frame = .init(origin: self.frame.origin, size: size)
+        self.backgroundColor = .clear
+    }
+}
+
+
+class UserView: UIView {
+    private let size: CGSize = .init(width: 20, height: 20)
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
@@ -39,11 +60,9 @@ final class UserLocationAnnotationView: MKAnnotationView {
         UIColor.white.setFill()
         innerCirclePath.fill()
     }
-    
-    // TODO: ADD Custom Image or configure custom uiView
+
     private func configure() {
         self.frame = .init(origin: self.frame.origin, size: size)
         self.backgroundColor = .clear
     }
-
 }
