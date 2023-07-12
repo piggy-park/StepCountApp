@@ -47,8 +47,7 @@ struct MapView: View {
             setDetailInfoToDestination(newSpot.coordinate)
         }
     }
-
-
+    
 
     @ViewBuilder
     private func buildButtons() -> some View {
