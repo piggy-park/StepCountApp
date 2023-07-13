@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D2460EB2A5FB111002281BE /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */; };
 		8D411CF52A4ECD5800C62AE4 /* MapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */; };
 		8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */; };
 		8D4967072A57DB27001EDF38 /* DestinationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI.swift; sourceTree = "<group>"; };
 		8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
 		8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */,
 				8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */,
 				8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */,
+				8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */,
 			);
 			path = MapAnnotations;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */,
 				8DA9ED242A4ED2E600029C71 /* MapViewModelSwiftUI.swift in Sources */,
 				8DB4AE0D2A56C2C100164699 /* MapView.swift in Sources */,
+				8D2460EB2A5FB111002281BE /* ClusterAnnotationView.swift in Sources */,
 				8DB4AE0F2A56C2F200164699 /* MapViewLocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

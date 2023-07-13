@@ -227,6 +227,7 @@ struct MapViewUIKit: UIViewRepresentable {
         mapView.delegate = context.coordinator
         mapView.register(PointSpotAnnotationView.self, forAnnotationViewWithReuseIdentifier: PointSpotAnnotationView.ID)
         mapView.register(UserLocationAnnotationView.self, forAnnotationViewWithReuseIdentifier: UserLocationAnnotationView.ID)
+        mapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: ClusterAnnotationView.ID)
         return mapView
     }
 
@@ -313,6 +314,7 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // Custom UserLocationView
         if annotation is MKUserLocation {
             guard let userLocationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: UserLocationAnnotationView.ID) as? UserLocationAnnotationView else { return nil }
             // HeadingView와의 Zindex 이슈로 밖에서 SubView넣어줌.
@@ -321,13 +323,23 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
             return userLocationAnnotationView
         }
 
-        guard let pointSpot = annotation as? PointSpotAnnotation,
-              let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: PointSpotAnnotationView.ID) as? PointSpotAnnotationView else { return nil }
-        annotationView.annotation = annotation
-        annotationView.displayPriority = .required
-        annotationView.canShowCallout = true
+        // Custom PointSpotAnnotationView
+        if let _ = annotation as? PointSpotAnnotation,
+           let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: PointSpotAnnotationView.ID) as? PointSpotAnnotationView {
+            annotationView.annotation = annotation
+            annotationView.displayPriority = .required
+            annotationView.canShowCallout = true
+            return annotationView
+        }
 
-        return annotationView
+        // Custom ClusterAnnotationView
+        if let _ = annotation as? MKClusterAnnotation,
+           let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ClusterAnnotationView.ID) as? ClusterAnnotationView {
+            annotationView.annotation = annotation
+            return annotationView
+        }
+
+        return nil
     }
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -345,4 +357,14 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
         self.parent.locationManager.selectedPoinSpot = pointSpotAnnotation
     }
 
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard view is ClusterAnnotationView else { return }
+
+        // if the user taps a cluster, zoom in
+        let currentSpan = mapView.region.span
+        let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0, longitudeDelta: currentSpan.longitudeDelta / 2.0)
+        let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
+        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+        mapView.setRegion(zoomed, animated: true)
+    }
 }

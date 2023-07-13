@@ -77,7 +77,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         let currentCoordinate = currentLocation.coordinate
         if pointSpotCoordinates.isEmpty {
             let randomCoordinates = makeRandomCoordinates(in: .init(center: currentCoordinate, latitudinalMeters: 1000, longitudinalMeters: 1000))
-            let randomPointSpots = randomCoordinates.map { PointSpotAnnotation(coordinate: .init(latitude: $0.latitude, longitude: $0.longitude), title: "20원!", subtitle: "") }
+            let randomPointSpots = randomCoordinates.map { PointSpotAnnotation(coordinate: .init(latitude: $0.latitude, longitude: $0.longitude), title: "20원", subtitle: "") }
             pointSpotCoordinates = randomPointSpots
         }
     }
