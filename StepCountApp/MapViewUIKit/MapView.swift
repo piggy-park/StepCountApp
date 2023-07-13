@@ -49,9 +49,7 @@ struct MapView: View {
             locationManager.stopUpdatingLocation()
         }
         .onChange(of: showDestinationDetail) { _ in
-            withAnimation {
-                self.showDestinationDetail = true
-            }
+            self.showDestinationDetail = true
         }
     }
     
@@ -176,44 +174,6 @@ struct MapView: View {
                     }
             }
         }
-    }
-
-
-    // 특정 두 위치 기준 거리 가져오기.
-    private func calculateDistance(from location1: CLLocationCoordinate2D, to location2: CLLocationCoordinate2D) -> Double {
-        let earthRadius = 6371.0 // 지구 반지름 (단위: 킬로미터)
-
-        let lat1Rad = degreesToRadians(degrees: location1.latitude)
-        let lon1Rad = degreesToRadians(degrees: location1.longitude)
-        let lat2Rad = degreesToRadians(degrees: location2.latitude)
-        let lon2Rad = degreesToRadians(degrees: location2.longitude)
-
-        let deltaLat = lat2Rad - lat1Rad
-        let deltaLon = lon2Rad - lon1Rad
-
-        let a = sin(deltaLat / 2) * sin(deltaLat / 2) +
-        cos(lat1Rad) * cos(lat2Rad) *
-        sin(deltaLon / 2) * sin(deltaLon / 2)
-        let c = 2 * atan2(sqrt(a), sqrt(1 - a))
-
-        let distance = earthRadius * c
-
-        return distance
-    }
-
-    // 목적지 까지의 설명값들(예상시간, 걸음수..)
-    private func setDetailInfoToDestination(_ destination: CLLocationCoordinate2D) {
-        let distance = calculateDistance(from: locationManager.currentLocation.coordinate,
-                                         to: destination)
-        let estimatedStepCount = Int(round(distance / commonStepSize))
-        let estimatedTimeOfArrival = Int(round(distance / commonStepSpeed * 60))
-        self.distanceFromCurrentLocation = round(distance * 100) / 100
-        self.estimatedStepCount = estimatedStepCount
-        self.estimatedTimeOfArrival = estimatedTimeOfArrival
-    }
-
-    private func degreesToRadians(degrees: Double) -> Double {
-        return degrees * .pi / 180.0
     }
 }
 
@@ -384,48 +344,45 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
         self.parent.showDestinationDetail = true
 
         if let selectedCoordinate = view.annotation?.coordinate {
-            parent.locationManager.getLocationTitle(location: .init(latitude: selectedCoordinate.latitude,
+            parent.locationManager.getLocationName(location: .init(latitude: selectedCoordinate.latitude,
                                                                     longitude: selectedCoordinate.longitude))
         }
 
         if let coordinate = view.annotation?.coordinate {
-            // eta request
-            let cacluateETARequest = MKDirections.Request()
-            cacluateETARequest.source = .forCurrentLocation()
-            cacluateETARequest.destination = .init(placemark: .init(coordinate: coordinate))
-            cacluateETARequest.requestsAlternateRoutes = true
-            cacluateETARequest.transportType = .walking
+            // caculate request
+            let caculateRequest = MKDirections.Request()
+            caculateRequest.source = .forCurrentLocation()
+            caculateRequest.destination = .init(placemark: .init(coordinate: coordinate))
+            caculateRequest.requestsAlternateRoutes = true // 모든 경로
+            caculateRequest.transportType = .walking
 
-            let directions_1 = MKDirections(request: cacluateETARequest)
+            let direction = MKDirections(request: caculateRequest)
 
-            directions_1.calculateETA { [weak self] response, _ in
-                guard let self = self else { return }
-                guard let response = response else { return }
-                let eta = Int(response.expectedTravelTime / 60)
-                let distance = response.distance
-                self.parent.distanceFromCurrentLocation = distance / 1000
-                self.parent.estimatedTimeOfArrival = eta
-                self.parent.estimatedStepCount = Int(distance / 0.7)
-            }
+            direction.calculate { [weak self] response, _ in
+                guard let response = response,
+                      let self = self,
+                      let shortestTravelTime = response.routes.map({ $0.expectedTravelTime }).min() else { return }
+                if let shortestRoute = response.routes.first(where: { $0.expectedTravelTime == shortestTravelTime }) {
 
-            // polyline request
-            let caculatePolylineRequest = MKDirections.Request()
-            caculatePolylineRequest.source = .forCurrentLocation()
-            caculatePolylineRequest.destination = .init(placemark: .init(coordinate: coordinate))
-//            caculatePolylineRequest.requestsAlternateRoutes = true //
-            caculatePolylineRequest.transportType = .walking
+                    // 기존에 그려놨던 overlay 제거
+                    for overlay in mapView.overlays {
+                        mapView.removeOverlay(overlay)
+                    }
 
-            let directions_2 = MKDirections(request: caculatePolylineRequest)
+                    // 최단 경로만 polyline
+                    mapView.addOverlay(shortestRoute.polyline)
 
-            directions_2.calculate { [weak self] response, _ in
-                guard let unwrappedResponse = response else { return }
-                guard let self = self else { return }
-                for route in unwrappedResponse.routes {
-                    mapView.addOverlay(route.polyline)
                     self.parent.showPolyLine = true
-                }
+
+                    // 예상 시간, 걸음수, 거리
+                    let eta = Int(shortestTravelTime / 60)
+                    let distance = shortestRoute.distance
+                    self.parent.distanceFromCurrentLocation = distance / 1000
+                    self.parent.estimatedTimeOfArrival = eta
+                    self.parent.estimatedStepCount = Int(distance / 0.7)
             }
         }
+    }
 
         guard view is ClusterAnnotationView else { return }
         // if the user taps a cluster, zoom in
@@ -435,5 +392,54 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)
+    }
+}
+
+extension CLLocationCoordinate2D {
+
+    // 특정 두 위치 기준 거리 가져오기.
+    func calculateDistance(to location2: CLLocationCoordinate2D) -> Double {
+        let earthRadius = 6371.0 // 지구 반지름 (단위: 킬로미터)
+
+        let lat1Rad = degreesToRadians(degrees: self.latitude)
+        let lon1Rad = degreesToRadians(degrees: self.longitude)
+        let lat2Rad = degreesToRadians(degrees: self.latitude)
+        let lon2Rad = degreesToRadians(degrees: self.longitude)
+
+        let deltaLat = lat2Rad - lat1Rad
+        let deltaLon = lon2Rad - lon1Rad
+
+        let a = sin(deltaLat / 2) * sin(deltaLat / 2) +
+        cos(lat1Rad) * cos(lat2Rad) *
+        sin(deltaLon / 2) * sin(deltaLon / 2)
+        let c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        let distance = earthRadius * c
+
+        return distance
+    }
+
+    // 특정 경위도 기준 반경 N미터 떨어져있는 경위도
+    func getCoordinateWithDistanceAndBearing(distance: CLLocationDistance, bearing: Double) -> CLLocationCoordinate2D {
+        let earthRadius: CLLocationDistance = 6371000 // 지구 반지름 (미터 단위)
+        let angularDistance = distance / earthRadius
+        let bearingRadians = bearing * .pi / 180
+
+        let centerLatitudeRadians = self.latitude * .pi / 180
+        let centerLongitudeRadians = self.longitude * .pi / 180
+
+        let newLatitudeRadians = asin(sin(centerLatitudeRadians) * cos(angularDistance) + cos(centerLatitudeRadians) * sin(angularDistance) * cos(bearingRadians))
+        let newLongitudeRadians = centerLongitudeRadians + atan2(sin(bearingRadians) * sin(angularDistance) * cos(centerLatitudeRadians), cos(angularDistance) - sin(centerLatitudeRadians) * sin(newLatitudeRadians))
+
+        let newLatitude = newLatitudeRadians * 180 / .pi
+        let newLongitude = newLongitudeRadians * 180 / .pi
+
+        return CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
+    }
+
+
+
+    private func degreesToRadians(degrees: Double) -> Double {
+        return degrees * .pi / 180.0
     }
 }

@@ -74,7 +74,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         return round(number * with) / with
     }
 
-    private func setPointSpotCoordinates() {
+    private func setRandomPointSpotCoordinates() {
         let currentCoordinate = currentLocation.coordinate
         if pointSpotCoordinates.isEmpty {
             let randomCoordinates = makeRandomCoordinates(in: .init(center: currentCoordinate, latitudinalMeters: 1000, longitudinalMeters: 1000))
@@ -83,25 +83,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         }
     }
 
-    // 특정 경위도 기준 반경 N미터 떨어져있는 경위도
-    private func getCoordinateWithDistanceAndBearing(from centerCoordinate: CLLocationCoordinate2D, distance: CLLocationDistance, bearing: Double) -> CLLocationCoordinate2D {
-        let earthRadius: CLLocationDistance = 6371000 // 지구 반지름 (미터 단위)
-        let angularDistance = distance / earthRadius
-        let bearingRadians = bearing * .pi / 180
-
-        let centerLatitudeRadians = centerCoordinate.latitude * .pi / 180
-        let centerLongitudeRadians = centerCoordinate.longitude * .pi / 180
-
-        let newLatitudeRadians = asin(sin(centerLatitudeRadians) * cos(angularDistance) + cos(centerLatitudeRadians) * sin(angularDistance) * cos(bearingRadians))
-        let newLongitudeRadians = centerLongitudeRadians + atan2(sin(bearingRadians) * sin(angularDistance) * cos(centerLatitudeRadians), cos(angularDistance) - sin(centerLatitudeRadians) * sin(newLatitudeRadians))
-
-        let newLatitude = newLatitudeRadians * 180 / .pi
-        let newLongitude = newLongitudeRadians * 180 / .pi
-
-        return CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
-    }
-
-    func getLocationTitle(location: CLLocation) {
+    func getLocationName(location: CLLocation) {
         let geoCoder = CLGeocoder()
 
         geoCoder.reverseGeocodeLocation(location) { placeMarks, _ in
@@ -158,7 +140,7 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
         
         // For point Spot
         if pointSpotCoordinates.isEmpty {
-            setPointSpotCoordinates()
+            setRandomPointSpotCoordinates()
         }
 
         // 최초 location을 가져오는 시점을 맞추기 위해 선언.
