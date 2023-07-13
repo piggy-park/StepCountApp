@@ -76,17 +76,9 @@ final class MapViewLocationManager: NSObject, ObservableObject {
     private func setPointSpotCoordinates() {
         let currentCoordinate = currentLocation.coordinate
         if pointSpotCoordinates.isEmpty {
-            let location1 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 0)
-            let location2 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 90)
-            let location3 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 180)
-            let location4 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 270)
-
-
-            pointSpotCoordinates.append(contentsOf: [PointSpotAnnotation(coordinate: location1, title: "spot1", subtitle: ""),
-                                                     PointSpotAnnotation(coordinate: location2, title: "spot2", subtitle: ""),
-                                                     PointSpotAnnotation(coordinate: location3, title: "spot3", subtitle: ""),
-                                                     PointSpotAnnotation(coordinate: location4, title: "spot4", subtitle: "")]
-            )
+            let randomCoordinates = makeRandomCoordinates(in: .init(center: currentCoordinate, latitudinalMeters: 1000, longitudinalMeters: 1000))
+            let randomPointSpots = randomCoordinates.map { PointSpotAnnotation(coordinate: .init(latitude: $0.latitude, longitude: $0.longitude), title: "20원!", subtitle: "") }
+            pointSpotCoordinates = randomPointSpots
         }
     }
 
@@ -170,5 +162,32 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didFailWithError error: Error) {
         print("Core Location Error : \(error)")
+    }
+}
+
+extension MapViewLocationManager {
+    func makeRandomCoordinates(_ number: Int = 100, in region: MKCoordinateRegion) -> [CLLocationCoordinate2D] {
+        let minLat = region.center.latitude - (region.span.latitudeDelta * 2)
+        let maxLat = region.center.latitude + (region.span.latitudeDelta * 2)
+
+        let minLon = region.center.longitude - (region.span.longitudeDelta)
+        let maxLon = region.center.longitude + (region.span.longitudeDelta)
+
+        let adjusted: [Int] = [minLat, maxLat, minLon, maxLon].map { Int($0 * 10000) }
+        let latDelta = adjusted[1] - adjusted[0]
+        let lonDelta = abs(adjusted[3] - adjusted[2])
+
+        var coordinates = [CLLocationCoordinate2D]()
+        for _ in 0...number {
+            let latRand = Int(arc4random_uniform(UInt32(latDelta)))
+            let lonRand = Int(arc4random_uniform(UInt32(lonDelta))) * -1
+
+            let lat: Double = minLat + (Double(latRand) / 10000.0)
+            let lon: Double = minLon - (Double(lonRand) / 10000.0)
+
+            coordinates.append(CLLocationCoordinate2D(latitude: lat, longitude: lon))
+        }
+
+        return coordinates
     }
 }
