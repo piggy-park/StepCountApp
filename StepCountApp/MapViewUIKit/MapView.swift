@@ -16,14 +16,13 @@ struct MapView: View {
 
     @StateObject private var locationManager: MapViewLocationManager = .init()
     @State private var trackingMode: MKUserTrackingMode = .follow
-    @State private var showPolyLine: Bool = false
+    @State private var showPolyLine: Bool = true
     @State private var goToCurrentUserLocation: Bool = false
     @State private var showDestinationDetail: Bool = false
 
     @State private var distanceFromCurrentLocation: Double = .zero
-    @State private var estimatedStepCount: Int = .zero
     @State private var estimatedTimeOfArrival: Int = .zero
-
+    @State private var estimatedStepCount: Int = .zero
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -32,11 +31,16 @@ struct MapView: View {
                 locationManager: locationManager,
                 trackingMode: $trackingMode,
                 showPolyLine: $showPolyLine,
-                goToCurrentUserLocation: $goToCurrentUserLocation
+                showDestinationDetail: $showDestinationDetail,
+                goToCurrentUserLocation: $goToCurrentUserLocation,
+                distanceFromCurrentLocation: $distanceFromCurrentLocation,
+                estimatedTimeOfArrival: $estimatedTimeOfArrival,
+                estimatedStepCount: $estimatedStepCount
             )
             .edgesIgnoringSafeArea(.all)
 
             buildButtons()
+
         }
         .onAppear {
             locationManager.startUpdatingLocation()
@@ -44,11 +48,7 @@ struct MapView: View {
         .onDisappear {
             locationManager.stopUpdatingLocation()
         }
-        .onChange(of: locationManager.selectedPoinSpot) { newSpot in
-            guard let newSpot = newSpot else { return }
-            setDetailInfoToDestination(newSpot.coordinate)
-        }
-        .onChange(of: locationManager.selectedPoinSpot) { _ in
+        .onChange(of: showDestinationDetail) { _ in
             withAnimation {
                 self.showDestinationDetail = true
             }
@@ -58,7 +58,6 @@ struct MapView: View {
 
     @ViewBuilder
     private func buildButtons() -> some View {
-        if showDestinationDetail {
             ZStack(alignment: .topLeading) {
                 VStack(alignment: .trailing) {
                     HStack(spacing: 16) {
@@ -128,57 +127,55 @@ struct MapView: View {
                     }
                     .padding([.leading, .trailing], 15)
 
+                    if showDestinationDetail {
+                        ZStack(alignment: .topLeading) {
+                            RoundedRectangle(cornerRadius: 25)
+                                .foregroundStyle(Color.primary)
+                            HStack {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("\(locationManager.locationName ?? "")로 가면")
+                                        .minimumScaleFactor(0.4)
+                                        .foregroundColor(.gray)
 
-                    ZStack(alignment: .topLeading) {
-                        RoundedRectangle(cornerRadius: 25)
-                            .foregroundStyle(Color.primary)
-                        HStack {
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text("지금 \(locationManager.locationName ?? "")로 가면")
-                                    .minimumScaleFactor(0.4)
-                                    .foregroundColor(.gray)
+                                    Spacer().frame(height: 8)
 
-                                Spacer().frame(height: 8)
+                                    Text("20원 지급")
+                                        .foregroundStyle(Color.blue)
+                                        .font(.title)
+                                        .fontWeight(.bold)
 
-                                Text("20원 지급")
-                                    .foregroundStyle(Color.blue)
-                                    .font(.title)
-                                    .fontWeight(.bold)
+                                    Spacer().frame(height: 16)
 
-                                Spacer().frame(height: 16)
+                                    Text("\(estimatedStepCount)걸음 • \(estimatedTimeOfArrival)분 예상")
+                                        .foregroundStyle(colorScheme == .light ? .white : .black)
+                                        .minimumScaleFactor(0.4)
+                                        .fontWeight(.bold)
 
-                                Text("\(estimatedStepCount)걸음 • \(estimatedTimeOfArrival)분 예상")
+                                    Spacer().frame(height: 8)
+
+                                    Text("거리: \(distanceFromCurrentLocation ,specifier: "%.2f")KM")
+                                        .minimumScaleFactor(0.4)
+                                        .foregroundStyle(colorScheme == .light ? .white : .black)
+
+                                }
+                                .padding(.top, 20)
+                                .padding(.leading, 20)
+
+                                Spacer()
+
+                                Image(systemName: "figure.run.circle")
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
                                     .foregroundStyle(colorScheme == .light ? .white : .black)
-                                    .minimumScaleFactor(0.4)
-                                    .fontWeight(.bold)
 
-                                Spacer().frame(height: 8)
-
-                                Text("거리: \(distanceFromCurrentLocation ,specifier: "%.2f")KM")
-                                    .minimumScaleFactor(0.4)
-                                    .foregroundStyle(colorScheme == .light ? .white : .black)
-
+                                Spacer().frame(width: 16)
                             }
-                            .padding(.top, 30)
-                            .padding(.leading, 20)
-
-                            Spacer()
-
-                            Image(systemName: "figure.run.circle")
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                                .foregroundStyle(colorScheme == .light ? .white : .black)
-
-                            Spacer().frame(width: 16)
                         }
+                        .frame(height: 180)
+                        .padding([.leading, .trailing], 15)
                     }
-                    .frame(height: 180)
-                    .padding([.leading, .trailing], 15)
-//                    .padding(.bottom, 10)
-                }
             }
         }
-
     }
 
 
@@ -224,17 +221,30 @@ struct MapViewUIKit: UIViewRepresentable {
     @ObservedObject var locationManager: MapViewLocationManager
     @Binding var trackingMode: MKUserTrackingMode
     @Binding var showPolyLine: Bool
+    @Binding var showDestinationDetail: Bool
     @Binding var goToCurrentUserLocation: Bool
+    @Binding var distanceFromCurrentLocation: Double
+    @Binding var estimatedTimeOfArrival: Int
+    @Binding var estimatedStepCount: Int
 
     init(locationManager: MapViewLocationManager,
          trackingMode: Binding<MKUserTrackingMode>,
          showPolyLine: Binding<Bool>,
-         goToCurrentUserLocation: Binding<Bool>)
+         showDestinationDetail: Binding<Bool>,
+         goToCurrentUserLocation: Binding<Bool>,
+         distanceFromCurrentLocation: Binding<Double>,
+         estimatedTimeOfArrival: Binding<Int>,
+         estimatedStepCount: Binding<Int>
+    )
     {
         self.locationManager = locationManager
         self._trackingMode = trackingMode
         self._showPolyLine = showPolyLine
+        self._showDestinationDetail = showDestinationDetail
         self._goToCurrentUserLocation = goToCurrentUserLocation
+        self._distanceFromCurrentLocation = distanceFromCurrentLocation
+        self._estimatedTimeOfArrival = estimatedTimeOfArrival
+        self._estimatedStepCount = estimatedStepCount
     }
 
     func makeUIView(context: Context) -> MKMapView {
@@ -370,15 +380,51 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
         return MKOverlayRenderer()
     }
 
-    func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-        guard let pointSpotAnnotation = annotation as? PointSpotAnnotation else { return }
-        self.parent.locationManager.selectedPoinSpot = pointSpotAnnotation
-    }
-
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        self.parent.showDestinationDetail = true
+
         if let selectedCoordinate = view.annotation?.coordinate {
             parent.locationManager.getLocationTitle(location: .init(latitude: selectedCoordinate.latitude,
                                                                     longitude: selectedCoordinate.longitude))
+        }
+
+        if let coordinate = view.annotation?.coordinate {
+            // eta request
+            let cacluateETARequest = MKDirections.Request()
+            cacluateETARequest.source = .forCurrentLocation()
+            cacluateETARequest.destination = .init(placemark: .init(coordinate: coordinate))
+            cacluateETARequest.requestsAlternateRoutes = true
+            cacluateETARequest.transportType = .walking
+
+            let directions_1 = MKDirections(request: cacluateETARequest)
+
+            directions_1.calculateETA { [weak self] response, _ in
+                guard let self = self else { return }
+                guard let response = response else { return }
+                let eta = Int(response.expectedTravelTime / 60)
+                let distance = response.distance
+                self.parent.distanceFromCurrentLocation = distance / 1000
+                self.parent.estimatedTimeOfArrival = eta
+                self.parent.estimatedStepCount = Int(distance / 0.7)
+            }
+
+            // polyline request
+            let caculatePolylineRequest = MKDirections.Request()
+            caculatePolylineRequest.source = .forCurrentLocation()
+            caculatePolylineRequest.destination = .init(placemark: .init(coordinate: coordinate))
+//            caculatePolylineRequest.requestsAlternateRoutes = true //
+            caculatePolylineRequest.transportType = .walking
+
+            let directions_2 = MKDirections(request: caculatePolylineRequest)
+
+            directions_2.calculate { [weak self] response, _ in
+                guard let unwrappedResponse = response else { return }
+                guard let self = self else { return }
+                for route in unwrappedResponse.routes {
+                    mapView.addOverlay(route.polyline)
+                    self.parent.showPolyLine = true
+                }
+            }
         }
 
         guard view is ClusterAnnotationView else { return }
