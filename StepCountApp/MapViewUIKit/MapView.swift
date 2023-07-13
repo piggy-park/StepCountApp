@@ -18,10 +18,12 @@ struct MapView: View {
     @State private var trackingMode: MKUserTrackingMode = .follow
     @State private var showPolyLine: Bool = false
     @State private var goToCurrentUserLocation: Bool = false
+    @State private var showDestinationDetail: Bool = false
 
     @State private var distanceFromCurrentLocation: Double = .zero
     @State private var estimatedStepCount: Int = .zero
     @State private var estimatedTimeOfArrival: Int = .zero
+
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -46,124 +48,137 @@ struct MapView: View {
             guard let newSpot = newSpot else { return }
             setDetailInfoToDestination(newSpot.coordinate)
         }
+        .onChange(of: locationManager.selectedPoinSpot) { _ in
+            withAnimation {
+                self.showDestinationDetail = true
+            }
+        }
     }
     
 
     @ViewBuilder
     private func buildButtons() -> some View {
-        ZStack(alignment: .topLeading) {
-            VStack(alignment: .trailing) {
-                HStack(spacing: 16) {
-                    Button {
-                        let previousValue = locationManager.drawPolyline
-                        locationManager.drawPolyline.toggle()
-                        let newValue = locationManager.drawPolyline
-                        if previousValue == true && newValue == false {
-                            locationManager.savePolyLine = true
-                        } else {
-                            locationManager.savePolyLine = false
-                        }
-                    } label: {
-                        HStack {
-                            if locationManager.drawPolyline {
-                                Image(systemName: "stop.circle.fill")
-                                    .foregroundStyle(.orange)
+        if showDestinationDetail {
+            ZStack(alignment: .topLeading) {
+                VStack(alignment: .trailing) {
+                    HStack(spacing: 16) {
+                        Button {
+                            let previousValue = locationManager.drawPolyline
+                            locationManager.drawPolyline.toggle()
+                            let newValue = locationManager.drawPolyline
+                            if previousValue == true && newValue == false {
+                                locationManager.savePolyLine = true
                             } else {
-                                Image(systemName: "record.circle")
-                                    .foregroundStyle(.orange)
+                                locationManager.savePolyLine = false
                             }
-                            Text(locationManager.drawPolyline ? "기록 중지" : "기록 시작")
-                                .fixedSize()
-                                .foregroundStyle(colorScheme == .light ? .white : .black)
+                        } label: {
+                            HStack {
+                                if locationManager.drawPolyline {
+                                    Image(systemName: "stop.circle.fill")
+                                        .foregroundStyle(.orange)
+                                } else {
+                                    Image(systemName: "record.circle")
+                                        .foregroundStyle(.orange)
+                                }
+                                Text(locationManager.drawPolyline ? "기록 중지" : "기록 시작")
+                                    .fixedSize()
+                                    .foregroundStyle(colorScheme == .light ? .white : .black)
+                            }
+                            .padding(8)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(Color.primary)
+                            }
+                        }
+
+                        Button {
+                            self.showPolyLine.toggle()
+                        } label: {
+                            HStack {
+                                Image(systemName: "road.lanes")
+                                    .foregroundStyle(.orange)
+                                Text("경로 보기")
+                                    .lineLimit(1)
+                                    .fixedSize()
+                                    .foregroundStyle(colorScheme == .light ? .white : .black)
+                            }
                         }
                         .padding(8)
                         .background {
                             RoundedRectangle(cornerRadius: 10)
                                 .foregroundStyle(Color.primary)
                         }
-                    }
 
-                    Button {
-                        self.showPolyLine.toggle()
-                    } label: {
-                        HStack {
-                            Image(systemName: "road.lanes")
-                                .foregroundStyle(.orange)
-                            Text("경로 보기")
-                                .lineLimit(1)
-                                .fixedSize()
-                                .foregroundStyle(colorScheme == .light ? .white : .black)
+                        Button {
+                            goToCurrentUserLocation.toggle()
+                        } label: {
+                            HStack {
+                                Image(systemName: "location.fill")
+                                    .foregroundStyle(.orange)
+                                Text("내 위치")
+                                    .fixedSize()
+                                    .foregroundStyle(colorScheme == .light ? .white : .black)
+                            }
+                            .padding(8)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(Color.primary)
+                            }
                         }
                     }
-                    .padding(8)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
+                    .padding([.leading, .trailing], 15)
+
+
+                    ZStack(alignment: .topLeading) {
+                        RoundedRectangle(cornerRadius: 25)
                             .foregroundStyle(Color.primary)
-                    }
-
-                    Button {
-                        goToCurrentUserLocation.toggle()
-                    } label: {
                         HStack {
-                            Image(systemName: "location.fill")
-                                .foregroundStyle(.orange)
-                            Text("내 위치")
-                                .fixedSize()
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("지금 \(locationManager.locationName ?? "")로 가면")
+                                    .minimumScaleFactor(0.4)
+                                    .foregroundColor(.gray)
+
+                                Spacer().frame(height: 8)
+
+                                Text("20원 지급")
+                                    .foregroundStyle(Color.blue)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+
+                                Spacer().frame(height: 16)
+
+                                Text("\(estimatedStepCount)걸음 • \(estimatedTimeOfArrival)분 예상")
+                                    .foregroundStyle(colorScheme == .light ? .white : .black)
+                                    .minimumScaleFactor(0.4)
+                                    .fontWeight(.bold)
+
+                                Spacer().frame(height: 8)
+
+                                Text("거리: \(distanceFromCurrentLocation ,specifier: "%.2f")KM")
+                                    .minimumScaleFactor(0.4)
+                                    .foregroundStyle(colorScheme == .light ? .white : .black)
+
+                            }
+                            .padding(.top, 30)
+                            .padding(.leading, 20)
+
+                            Spacer()
+
+                            Image(systemName: "figure.run.circle")
+                                .resizable()
+                                .frame(width: 80, height: 80)
                                 .foregroundStyle(colorScheme == .light ? .white : .black)
-                        }
-                        .padding(8)
-                        .background {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundStyle(Color.primary)
+
+                            Spacer().frame(width: 16)
                         }
                     }
+                    .frame(height: 180)
+                    .padding([.leading, .trailing], 15)
+//                    .padding(.bottom, 10)
                 }
-                .padding([.leading, .trailing], 15)
-
-                ZStack(alignment: .topLeading) {
-                    RoundedRectangle(cornerRadius: 25)
-                        .foregroundStyle(Color.primary)
-                    HStack {
-                        VStack(alignment: .leading, spacing: 0) {
-                            // TODO: 위치정보에 따라 바꿀것.
-                            Text("그라운드 X에 가면")
-                                .foregroundColor(.gray)
-
-                            Spacer().frame(height: 8)
-
-                            Text("20원 지급")
-                                .foregroundStyle(Color.blue)
-                                .font(.title)
-                                .fontWeight(.bold)
-
-                            Spacer().frame(height: 16)
-
-                            Text("현재 위치에서 \(estimatedStepCount)걸음 • \(estimatedTimeOfArrival)분 예상")
-                                .foregroundStyle(colorScheme == .light ? .white : .black)
-                                .fontWeight(.bold)
-                            Text("거리: \(distanceFromCurrentLocation ,specifier: "%.2f")KM")
-                                .foregroundStyle(colorScheme == .light ? .white : .black)
-
-                        }
-                        .padding(.top, 30)
-                        .padding(.leading, 20)
-
-                        Spacer()
-
-                        Image(systemName: "figure.run.circle")
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                            .foregroundStyle(colorScheme == .light ? .white : .black)
-
-                        Spacer().frame(width: 16)
-                    }
-                }
-                .frame(height: 180)
-                .padding([.leading, .trailing], 15)
-                .padding(.bottom, 10)
-
             }
         }
+
     }
 
 
@@ -225,9 +240,12 @@ struct MapViewUIKit: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
-        mapView.register(PointSpotAnnotationView.self, forAnnotationViewWithReuseIdentifier: PointSpotAnnotationView.ID)
-        mapView.register(UserLocationAnnotationView.self, forAnnotationViewWithReuseIdentifier: UserLocationAnnotationView.ID)
-        mapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: ClusterAnnotationView.ID)
+        mapView.register(PointSpotAnnotationView.self,
+                         forAnnotationViewWithReuseIdentifier: PointSpotAnnotationView.ID)
+        mapView.register(UserLocationAnnotationView.self,
+                         forAnnotationViewWithReuseIdentifier: UserLocationAnnotationView.ID)
+        mapView.register(ClusterAnnotationView.self,
+                         forAnnotationViewWithReuseIdentifier: ClusterAnnotationView.ID)
         return mapView
     }
 
@@ -358,11 +376,16 @@ final class MapCoordinator: NSObject, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard view is ClusterAnnotationView else { return }
+        if let selectedCoordinate = view.annotation?.coordinate {
+            parent.locationManager.getLocationTitle(location: .init(latitude: selectedCoordinate.latitude,
+                                                                    longitude: selectedCoordinate.longitude))
+        }
 
+        guard view is ClusterAnnotationView else { return }
         // if the user taps a cluster, zoom in
         let currentSpan = mapView.region.span
-        let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0, longitudeDelta: currentSpan.longitudeDelta / 2.0)
+        let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0,
+                                        longitudeDelta: currentSpan.longitudeDelta / 2.0)
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)

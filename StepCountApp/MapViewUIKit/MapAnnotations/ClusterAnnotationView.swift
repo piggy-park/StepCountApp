@@ -38,17 +38,20 @@ extension UIGraphicsImageRenderer {
         let renderer = UIGraphicsImageRenderer(size: rect.size)
 
         let totalCount = annotations.count
-        let alReadyGoCount = 0         // 이미 방문한 장소가 Cluster에 얼만큼 되어있는지 표현 가능.
+        // 이미 방문한 장소가 Cluster에 얼만큼 되어있는지 표현 가능.
+        let alReadyGoCount = 0
         let countText = "\(totalCount)"
 
         return renderer.image { _ in
-            UIColor(red: 245 / 255.0, green: 166 / 255.0, blue: 35 / 255.0, alpha: 1.0).setFill() // total count 색상
+            // total count 색상
+            UIColor(red: 245 / 255.0, green: 166 / 255.0, blue: 35 / 255.0, alpha: 1.0).setFill()
             UIBezierPath(ovalIn: rect).fill()
-
-            UIColor(red: 245 / 255.0, green: 166 / 255.0, blue: 35 / 255.0, alpha: 1.0).setFill() // alReady go count 색상
+            // alReady go count 색상
+            UIColor(red: 245 / 255.0, green: 166 / 255.0, blue: 35 / 255.0, alpha: 1.0).setFill()
             let piePath = UIBezierPath()
             piePath.addArc(withCenter: CGPoint(x: 20, y: 20), radius: 20,
-                           startAngle: 0, endAngle: (CGFloat.pi * 2.0 * CGFloat(alReadyGoCount)) / CGFloat(totalCount),
+                           startAngle: 0,
+                           endAngle: (CGFloat.pi * 2.0 * CGFloat(alReadyGoCount)) / CGFloat(totalCount),
                            clockwise: true)
             piePath.addLine(to: CGPoint(x: 20, y: 20))
             piePath.close()

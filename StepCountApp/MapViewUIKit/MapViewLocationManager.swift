@@ -25,6 +25,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
     @Published var drawPolyline: Bool = false
     @Published var polylines: [[CLLocation]] = []
     @Published var userHeading: Double?
+    @Published var locationName: String?
 
     var currentLocation: CLLocation = .init()
 
@@ -77,7 +78,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         let currentCoordinate = currentLocation.coordinate
         if pointSpotCoordinates.isEmpty {
             let randomCoordinates = makeRandomCoordinates(in: .init(center: currentCoordinate, latitudinalMeters: 1000, longitudinalMeters: 1000))
-            let randomPointSpots = randomCoordinates.map { PointSpotAnnotation(coordinate: .init(latitude: $0.latitude, longitude: $0.longitude), title: "20원", subtitle: "") }
+            let randomPointSpots = randomCoordinates.map { PointSpotAnnotation(coordinate: .init(latitude: $0.latitude, longitude: $0.longitude), title: "20", subtitle: "") }
             pointSpotCoordinates = randomPointSpots
         }
     }
@@ -100,6 +101,15 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         return CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
     }
 
+    func getLocationTitle(location: CLLocation) {
+        let geoCoder = CLGeocoder()
+
+        geoCoder.reverseGeocodeLocation(location) { placeMarks, _ in
+            guard let placeMarks = placeMarks,
+                  let address = placeMarks.first else { return }
+            self.locationName = address.name
+        }
+    }
 }
 
 extension MapViewLocationManager: CLLocationManagerDelegate {
@@ -137,7 +147,7 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
             if !polylines.isEmpty {
                 self.polylines[polylines.count - 1] = currentPolyline
             } else {
-                self.polylines.append([])
+                self.polylines.append([location])
             }
         }
 
@@ -155,6 +165,7 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
         if locationUpdateStatus == .none {
             self.locationUpdateStatus = .startUpdating
         }
+
 
     }
 
