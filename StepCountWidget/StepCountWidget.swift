@@ -10,10 +10,13 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+
+    //데이터를 불러오기 전에 보여줄 PlaceHolder
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), configuration: ConfigurationIntent())
     }
 
+    // 추가하기전에 보이는 View
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(), configuration: configuration)
         completion(entry)
@@ -22,7 +25,7 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        // 현 시간부터 5시간동안 1시간씩 업데이트됨.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
@@ -35,11 +38,13 @@ struct Provider: IntentTimelineProvider {
     }
 }
 
+// 보여질 View에 들어갈 데이터
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
 }
 
+// 보여질 View
 struct StepCountWidgetEntryView : View {
     var entry: Provider.Entry
 
@@ -54,11 +59,13 @@ struct StepCountWidget: Widget {
     let kind: String = "StepCountWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self,
+                            provider: Provider()) { entry in
             StepCountWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        // 위젯 설명
+        .configurationDisplayName("StepCount Widget")
+        .description("위젯 샘플입니다.")
     }
 }
 

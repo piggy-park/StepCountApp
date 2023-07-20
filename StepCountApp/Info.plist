@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>위치 권한좀 주세요 제발~</string>
-	<key>NSLocationUsageDescription</key>
-	<string>위치 권한좀 주세요 제발~~</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>ConfigurationIntent</string>
+	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>사용자 위치 추적을 위해 권한을 허용해주세요.</string>
 	<key>NSLocationAlwaysUsageDescription</key>

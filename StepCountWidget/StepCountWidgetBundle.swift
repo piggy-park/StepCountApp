@@ -12,6 +12,6 @@ import SwiftUI
 struct StepCountWidgetBundle: WidgetBundle {
     var body: some Widget {
         StepCountWidget()
-        StepCountWidgetLiveActivity()
+//        StepCountWidgetLiveActivity()
     }
 }

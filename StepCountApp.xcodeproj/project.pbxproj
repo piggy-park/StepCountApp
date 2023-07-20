@@ -60,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
+		8D2CCC0C2A67D70E0034A5EE /* StepCountApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StepCountApp.entitlements; sourceTree = "<group>"; };
 		8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI.swift; sourceTree = "<group>"; };
 		8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
 		8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailView.swift; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		8D90635A2A4D1C0800E6D5DC /* StepCountApp */ = {
 			isa = PBXGroup;
 			children = (
+				8D2CCC0C2A67D70E0034A5EE /* StepCountApp.entitlements */,
 				8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */,
 				8D90635D2A4D1C0800E6D5DC /* ContentView.swift */,
 				8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */,
@@ -373,7 +375,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp.StepCountWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JT5962HWNA.StepCountApp.StepCountWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -401,7 +403,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp.StepCountWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JT5962HWNA.StepCountApp.StepCountWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -530,6 +532,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = StepCountApp/StepCountApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
@@ -537,6 +540,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 권한좀 주세요 제발~";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 권한좀 주세요 제발 ~~~~~";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 권한좀 주세요 제발~~";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 추적을 위해 권한을 허용해주세요.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "발걸음수 측정을 위해 권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -548,7 +556,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JT5962HWNA.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -562,6 +570,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = StepCountApp/StepCountApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
@@ -569,6 +578,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 권한좀 주세요 제발~";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 권한좀 주세요 제발 ~~~~~";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 권한좀 주세요 제발~~";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 추적을 위해 권한을 허용해주세요.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "발걸음수 측정을 위해 권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -580,7 +594,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JT5962HWNA.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

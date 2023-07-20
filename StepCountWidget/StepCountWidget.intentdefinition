@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20A294</string>
+	<string>22F82</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12A6144</string>
+	<string>14E300c</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.0</string>
+	<string>14.3.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -23,10 +23,26 @@
 			<string>tVvJ9c</string>
 			<key>INIntentEligibleForWidgets</key>
 			<true/>
-			<key>INIntentIneligibleForSuggestions</key>
-			<true/>
 			<key>INIntentName</key>
 			<string>Configuration</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>보고싶은 요일의 걸음 수를 선택해주세요.</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>mzUqUx</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>만보기</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>uJ5ThH</string>
+				</dict>
+			</dict>
 			<key>INIntentResponse</key>
 			<dict>
 				<key>INIntentResponseCodes</key>
