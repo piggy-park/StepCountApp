@@ -106,21 +106,16 @@ struct MapView: View {
                                 .foregroundStyle(Color.primary)
                         }
 
-                        Button {
-                            goToCurrentUserLocation.toggle()
-                        } label: {
-                            HStack {
-                                Image(systemName: "location.fill")
-                                    .foregroundStyle(.orange)
-                                Text("내 위치")
-                                    .fixedSize()
-                                    .foregroundStyle(colorScheme == .light ? .white : .black)
-                            }
-                            .padding(8)
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundStyle(Color.primary)
-                            }
+                    Button {
+                        self.showPolyLine.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "road.lanes")
+                                .foregroundStyle(.orange)
+                            Text(showPolyLine ? "경로 가리기" : "경로 보기")
+                                .lineLimit(1)
+                                .fixedSize()
+                                .foregroundStyle(colorScheme == .light ? .white : .black)
                         }
                     }
                     .padding([.leading, .trailing], 15)
