@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D2460EB2A5FB111002281BE /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */; };
-		8D411CF52A4ECD5800C62AE4 /* MapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */; };
 		8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */; };
-		8D4967072A57DB27001EDF38 /* DestinationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */; };
 		8D6315622A63D10E00910F57 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6315612A63D10E00910F57 /* WidgetKit.framework */; };
 		8D6315642A63D10E00910F57 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6315632A63D10E00910F57 /* SwiftUI.framework */; };
 		8D6315672A63D10E00910F57 /* StepCountWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6315662A63D10E00910F57 /* StepCountWidgetBundle.swift */; };
@@ -20,18 +18,18 @@
 		8D6315702A63D10F00910F57 /* StepCountWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8D63156C2A63D10E00910F57 /* StepCountWidget.intentdefinition */; };
 		8D6315712A63D10F00910F57 /* StepCountWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8D63156C2A63D10E00910F57 /* StepCountWidget.intentdefinition */; };
 		8D6315742A63D10F00910F57 /* StepCountWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8D7B19012A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */; };
 		8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */; };
-		8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635D2A4D1C0800E6D5DC /* ContentView.swift */; };
 		8D9063602A4D1C0900E6D5DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */; };
 		8D9063632A4D1C0900E6D5DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9063622A4D1C0900E6D5DC /* Preview Assets.xcassets */; };
-		8DA9ED222A4ED14C00029C71 /* MapViewSwiftUI_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */; };
-		8DA9ED242A4ED2E600029C71 /* MapViewModelSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */; };
 		8DB4AE0D2A56C2C100164699 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4AE0C2A56C2C100164699 /* MapView.swift */; };
 		8DB4AE0F2A56C2F200164699 /* MapViewLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4AE0E2A56C2F200164699 /* MapViewLocationManager.swift */; };
 		8DC0C7F12A5E3A01006A264E /* GradientTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */; };
 		8DC0C7F42A5E3A3E006A264E /* PointSpotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */; };
 		8DC0C7F62A5E3B55006A264E /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */; };
+		E43F4CA92AF881AE009423EA /* StepsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CA82AF881AE009423EA /* StepsManager.swift */; };
+		E43F4CAB2AF881E7009423EA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAA2AF881E7009423EA /* Extensions.swift */; };
+		E43F4CAD2AF8821B009423EA /* UIKitMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */; };
+		E43F4CAF2AF88231009423EA /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAE2AF88231009423EA /* MapCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,9 +59,7 @@
 /* Begin PBXFileReference section */
 		8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		8D2CCC0C2A67D70E0034A5EE /* StepCountApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StepCountApp.entitlements; sourceTree = "<group>"; };
-		8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI.swift; sourceTree = "<group>"; };
 		8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
-		8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailView.swift; sourceTree = "<group>"; };
 		8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StepCountWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D6315612A63D10E00910F57 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8D6315632A63D10E00910F57 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -73,20 +69,20 @@
 		8D63156C2A63D10E00910F57 /* StepCountWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = StepCountWidget.intentdefinition; sourceTree = "<group>"; };
 		8D63156D2A63D10F00910F57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D63156F2A63D10F00910F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountMapViewSwiftUI.swift; sourceTree = "<group>"; };
 		8D9063582A4D1C0800E6D5DC /* StepCountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepCountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppApp.swift; sourceTree = "<group>"; };
-		8D90635D2A4D1C0800E6D5DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D9063622A4D1C0900E6D5DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D9063692A4D1CE000E6D5DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI_1.swift; sourceTree = "<group>"; };
-		8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelSwiftUI.swift; sourceTree = "<group>"; };
 		8DB4AE0C2A56C2C100164699 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		8DB4AE0E2A56C2F200164699 /* MapViewLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewLocationManager.swift; sourceTree = "<group>"; };
 		8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTriangleView.swift; sourceTree = "<group>"; };
 		8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpotAnnotation.swift; sourceTree = "<group>"; };
 		8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
+		E43F4CA82AF881AE009423EA /* StepsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsManager.swift; sourceTree = "<group>"; };
+		E43F4CAA2AF881E7009423EA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMapView.swift; sourceTree = "<group>"; };
+		E43F4CAE2AF88231009423EA /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +134,6 @@
 				8D6315652A63D10E00910F57 /* StepCountWidget */,
 				8D6315602A63D10E00910F57 /* Frameworks */,
 				8D9063592A4D1C0800E6D5DC /* Products */,
-				A0AC7C1B89979849593E434A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,11 +151,10 @@
 			children = (
 				8D2CCC0C2A67D70E0034A5EE /* StepCountApp.entitlements */,
 				8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */,
-				8D90635D2A4D1C0800E6D5DC /* ContentView.swift */,
 				8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */,
-				8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */,
+				E43F4CA82AF881AE009423EA /* StepsManager.swift */,
+				E43F4CAA2AF881E7009423EA /* Extensions.swift */,
 				8DB4AE102A56C2F900164699 /* MapViewUIKit */,
-				8DB4AE112A56C33800164699 /* MapViewSwiftUI */,
 				8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */,
 				8D9063692A4D1CE000E6D5DC /* Info.plist */,
 				8D9063612A4D1C0900E6D5DC /* Preview Content */,
@@ -180,21 +174,12 @@
 			isa = PBXGroup;
 			children = (
 				8DB4AE0C2A56C2C100164699 /* MapView.swift */,
+				E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */,
+				E43F4CAE2AF88231009423EA /* MapCoordinator.swift */,
 				8DB4AE0E2A56C2F200164699 /* MapViewLocationManager.swift */,
 				8DC0C7F22A5E3A29006A264E /* MapAnnotations */,
 			);
 			path = MapViewUIKit;
-			sourceTree = "<group>";
-		};
-		8DB4AE112A56C33800164699 /* MapViewSwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-				8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */,
-				8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */,
-				8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */,
-				8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */,
-			);
-			path = MapViewSwiftUI;
 			sourceTree = "<group>";
 		};
 		8DC0C7F22A5E3A29006A264E /* MapAnnotations */ = {
@@ -206,13 +191,6 @@
 				8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */,
 			);
 			path = MapAnnotations;
-			sourceTree = "<group>";
-		};
-		A0AC7C1B89979849593E434A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,18 +305,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D411CF52A4ECD5800C62AE4 /* MapViewSwiftUI.swift in Sources */,
-				8DA9ED222A4ED14C00029C71 /* MapViewSwiftUI_1.swift in Sources */,
 				8DC0C7F12A5E3A01006A264E /* GradientTriangleView.swift in Sources */,
 				8DC0C7F42A5E3A3E006A264E /* PointSpotAnnotation.swift in Sources */,
-				8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */,
 				8D6315712A63D10F00910F57 /* StepCountWidget.intentdefinition in Sources */,
+				E43F4CAD2AF8821B009423EA /* UIKitMapView.swift in Sources */,
 				8DC0C7F62A5E3B55006A264E /* UserLocationAnnotation.swift in Sources */,
 				8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */,
-				8D4967072A57DB27001EDF38 /* DestinationDetailView.swift in Sources */,
-				8D7B19012A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift in Sources */,
+				E43F4CA92AF881AE009423EA /* StepsManager.swift in Sources */,
+				E43F4CAB2AF881E7009423EA /* Extensions.swift in Sources */,
+				E43F4CAF2AF88231009423EA /* MapCoordinator.swift in Sources */,
 				8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */,
-				8DA9ED242A4ED2E600029C71 /* MapViewModelSwiftUI.swift in Sources */,
 				8DB4AE0D2A56C2C100164699 /* MapView.swift in Sources */,
 				8D2460EB2A5FB111002281BE /* ClusterAnnotationView.swift in Sources */,
 				8DB4AE0F2A56C2F200164699 /* MapViewLocationManager.swift in Sources */,
@@ -375,7 +351,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JT5962HWNA.ko.piggy.StepCountApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -403,7 +379,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JT5962HWNA.ko.piggy.StepCountApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -536,7 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
-				DEVELOPMENT_TEAM = JT5962HWNA;
+				DEVELOPMENT_TEAM = KVQ3SYH7AU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
@@ -550,13 +526,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JT5962HWNA.ko.piggy.StepCountApp;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -577,7 +553,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
-				DEVELOPMENT_TEAM = JT5962HWNA;
+				DEVELOPMENT_TEAM = KVQ3SYH7AU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
@@ -591,13 +567,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = JT5962HWNA.ko.piggy.StepCountApp;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

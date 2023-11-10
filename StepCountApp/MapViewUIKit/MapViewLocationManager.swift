@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import MapKit
+import OSLog
 
 enum LocationUpdateStatus {
     case none
@@ -22,7 +23,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
     var savePolyLine: Bool = false
     @Published var selectedPoinSpot: PointSpotAnnotation?
     @Published var locationUpdateStatus: LocationUpdateStatus = .none
-    @Published var drawPolyline: Bool = false
+    @Published var startRecord: Bool = false
     @Published var polylines: [[CLLocation]] = []
     @Published var userHeading: Double?
     @Published var locationName: String?
@@ -48,6 +49,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = accuracy
         locationManager.distanceFilter = 10
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.headingFilter = 0.1
     }
 
@@ -76,6 +78,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
 
     private func setRandomPointSpotCoordinates() {
         let currentCoordinate = currentLocation.coordinate
+
         if pointSpotCoordinates.isEmpty {
             let randomCoordinates = makeRandomCoordinates(in: .init(center: currentCoordinate, latitudinalMeters: 1000, longitudinalMeters: 1000))
             let randomPointSpots = randomCoordinates.map { PointSpotAnnotation(coordinate: .init(latitude: $0.latitude, longitude: $0.longitude), title: "20", subtitle: "") }
@@ -121,10 +124,10 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
+        print("\(location)")
         self.currentLocation = location
-
         // For mulit polyline
-        if drawPolyline {
+        if startRecord {
             self.currentPolyline.append(location)
             if !polylines.isEmpty {
                 self.polylines[polylines.count - 1] = currentPolyline
@@ -137,7 +140,7 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
             polylines.append(currentPolyline)
             currentPolyline = []
         }
-        
+
         // For point Spot
         if pointSpotCoordinates.isEmpty {
             setRandomPointSpotCoordinates()
