@@ -26,6 +26,7 @@
 		8DC0C7F12A5E3A01006A264E /* GradientTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */; };
 		8DC0C7F42A5E3A3E006A264E /* PointSpotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */; };
 		8DC0C7F62A5E3B55006A264E /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */; };
+		E42984E52B3C1A020066C0B1 /* StepCountAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */; };
 		E43F4CA92AF881AE009423EA /* StepsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CA82AF881AE009423EA /* StepsManager.swift */; };
 		E43F4CAB2AF881E7009423EA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAA2AF881E7009423EA /* Extensions.swift */; };
 		E43F4CAD2AF8821B009423EA /* UIKitMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */; };
@@ -39,6 +40,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8D63155E2A63D10E00910F57;
 			remoteInfo = StepCountWidgetExtension;
+		};
+		E42984E62B3C1A020066C0B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9063502A4D1C0800E6D5DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9063572A4D1C0800E6D5DC;
+			remoteInfo = StepCountApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -79,6 +87,8 @@
 		8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTriangleView.swift; sourceTree = "<group>"; };
 		8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpotAnnotation.swift; sourceTree = "<group>"; };
 		8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
+		E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepCountAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppTests.swift; sourceTree = "<group>"; };
 		E43F4CA82AF881AE009423EA /* StepsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsManager.swift; sourceTree = "<group>"; };
 		E43F4CAA2AF881E7009423EA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMapView.swift; sourceTree = "<group>"; };
@@ -96,6 +106,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8D9063552A4D1C0800E6D5DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42984DF2B3C1A020066C0B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -132,6 +149,7 @@
 			children = (
 				8D90635A2A4D1C0800E6D5DC /* StepCountApp */,
 				8D6315652A63D10E00910F57 /* StepCountWidget */,
+				E42984E32B3C1A020066C0B1 /* StepCountAppTests */,
 				8D6315602A63D10E00910F57 /* Frameworks */,
 				8D9063592A4D1C0800E6D5DC /* Products */,
 			);
@@ -142,6 +160,7 @@
 			children = (
 				8D9063582A4D1C0800E6D5DC /* StepCountApp.app */,
 				8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */,
+				E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +212,14 @@
 			path = MapAnnotations;
 			sourceTree = "<group>";
 		};
+		E42984E32B3C1A020066C0B1 /* StepCountAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */,
+			);
+			path = StepCountAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,6 +259,24 @@
 			productReference = 8D9063582A4D1C0800E6D5DC /* StepCountApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E42984E12B3C1A020066C0B1 /* StepCountAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E42984EA2B3C1A020066C0B1 /* Build configuration list for PBXNativeTarget "StepCountAppTests" */;
+			buildPhases = (
+				E42984DE2B3C1A020066C0B1 /* Sources */,
+				E42984DF2B3C1A020066C0B1 /* Frameworks */,
+				E42984E02B3C1A020066C0B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E42984E72B3C1A020066C0B1 /* PBXTargetDependency */,
+			);
+			name = StepCountAppTests;
+			productName = StepCountAppTests;
+			productReference = E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -239,7 +284,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					8D63155E2A63D10E00910F57 = {
@@ -247,6 +292,10 @@
 					};
 					8D9063572A4D1C0800E6D5DC = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					E42984E12B3C1A020066C0B1 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 8D9063572A4D1C0800E6D5DC;
 					};
 				};
 			};
@@ -265,6 +314,7 @@
 			targets = (
 				8D9063572A4D1C0800E6D5DC /* StepCountApp */,
 				8D63155E2A63D10E00910F57 /* StepCountWidgetExtension */,
+				E42984E12B3C1A020066C0B1 /* StepCountAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +334,13 @@
 			files = (
 				8D9063632A4D1C0900E6D5DC /* Preview Assets.xcassets in Resources */,
 				8D9063602A4D1C0900E6D5DC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42984E02B3C1A020066C0B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +378,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E42984DE2B3C1A020066C0B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42984E52B3C1A020066C0B1 /* StepCountAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -328,6 +393,11 @@
 			isa = PBXTargetDependency;
 			target = 8D63155E2A63D10E00910F57 /* StepCountWidgetExtension */;
 			targetProxy = 8D6315722A63D10F00910F57 /* PBXContainerItemProxy */;
+		};
+		E42984E72B3C1A020066C0B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9063572A4D1C0800E6D5DC /* StepCountApp */;
+			targetProxy = E42984E62B3C1A020066C0B1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -584,6 +654,53 @@
 			};
 			name = Release;
 		};
+		E42984E82B3C1A020066C0B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StepCountApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StepCountApp";
+			};
+			name = Debug;
+		};
+		E42984E92B3C1A020066C0B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StepCountApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StepCountApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -610,6 +727,15 @@
 			buildConfigurations = (
 				8D9063672A4D1C0900E6D5DC /* Debug */,
 				8D9063682A4D1C0900E6D5DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E42984EA2B3C1A020066C0B1 /* Build configuration list for PBXNativeTarget "StepCountAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42984E82B3C1A020066C0B1 /* Debug */,
+				E42984E92B3C1A020066C0B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
