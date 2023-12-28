@@ -40,6 +40,17 @@
                ReferencedContainer = "container:StepCountApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E40008C02B3D0AF300AF8C33"
+               BuildableName = "StepCountAppUITests.xctest"
+               BlueprintName = "StepCountAppUITests"
+               ReferencedContainer = "container:StepCountApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

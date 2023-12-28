@@ -26,6 +26,8 @@
 		8DC0C7F12A5E3A01006A264E /* GradientTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */; };
 		8DC0C7F42A5E3A3E006A264E /* PointSpotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */; };
 		8DC0C7F62A5E3B55006A264E /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */; };
+		E40008C42B3D0AF300AF8C33 /* StepCountAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40008C32B3D0AF300AF8C33 /* StepCountAppUITests.swift */; };
+		E40008C62B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40008C52B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift */; };
 		E42984E52B3C1A020066C0B1 /* StepCountAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */; };
 		E43F4CA92AF881AE009423EA /* StepsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CA82AF881AE009423EA /* StepsManager.swift */; };
 		E43F4CAB2AF881E7009423EA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAA2AF881E7009423EA /* Extensions.swift */; };
@@ -40,6 +42,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8D63155E2A63D10E00910F57;
 			remoteInfo = StepCountWidgetExtension;
+		};
+		E40008C72B3D0AF300AF8C33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9063502A4D1C0800E6D5DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9063572A4D1C0800E6D5DC;
+			remoteInfo = StepCountApp;
 		};
 		E42984E62B3C1A020066C0B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -87,6 +96,9 @@
 		8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTriangleView.swift; sourceTree = "<group>"; };
 		8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpotAnnotation.swift; sourceTree = "<group>"; };
 		8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
+		E40008C12B3D0AF300AF8C33 /* StepCountAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepCountAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40008C32B3D0AF300AF8C33 /* StepCountAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppUITests.swift; sourceTree = "<group>"; };
+		E40008C52B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepCountAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppTests.swift; sourceTree = "<group>"; };
 		E43F4CA82AF881AE009423EA /* StepsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsManager.swift; sourceTree = "<group>"; };
@@ -106,6 +118,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8D9063552A4D1C0800E6D5DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E40008BE2B3D0AF300AF8C33 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -150,6 +169,7 @@
 				8D90635A2A4D1C0800E6D5DC /* StepCountApp */,
 				8D6315652A63D10E00910F57 /* StepCountWidget */,
 				E42984E32B3C1A020066C0B1 /* StepCountAppTests */,
+				E40008C22B3D0AF300AF8C33 /* StepCountAppUITests */,
 				8D6315602A63D10E00910F57 /* Frameworks */,
 				8D9063592A4D1C0800E6D5DC /* Products */,
 			);
@@ -161,6 +181,7 @@
 				8D9063582A4D1C0800E6D5DC /* StepCountApp.app */,
 				8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */,
 				E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */,
+				E40008C12B3D0AF300AF8C33 /* StepCountAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +233,15 @@
 			path = MapAnnotations;
 			sourceTree = "<group>";
 		};
+		E40008C22B3D0AF300AF8C33 /* StepCountAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E40008C32B3D0AF300AF8C33 /* StepCountAppUITests.swift */,
+				E40008C52B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift */,
+			);
+			path = StepCountAppUITests;
+			sourceTree = "<group>";
+		};
 		E42984E32B3C1A020066C0B1 /* StepCountAppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +289,24 @@
 			productReference = 8D9063582A4D1C0800E6D5DC /* StepCountApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E40008C02B3D0AF300AF8C33 /* StepCountAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E40008CB2B3D0AF300AF8C33 /* Build configuration list for PBXNativeTarget "StepCountAppUITests" */;
+			buildPhases = (
+				E40008BD2B3D0AF300AF8C33 /* Sources */,
+				E40008BE2B3D0AF300AF8C33 /* Frameworks */,
+				E40008BF2B3D0AF300AF8C33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E40008C82B3D0AF300AF8C33 /* PBXTargetDependency */,
+			);
+			name = StepCountAppUITests;
+			productName = StepCountAppUITests;
+			productReference = E40008C12B3D0AF300AF8C33 /* StepCountAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E42984E12B3C1A020066C0B1 /* StepCountAppTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E42984EA2B3C1A020066C0B1 /* Build configuration list for PBXNativeTarget "StepCountAppTests" */;
@@ -293,6 +341,10 @@
 					8D9063572A4D1C0800E6D5DC = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
+					E40008C02B3D0AF300AF8C33 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 8D9063572A4D1C0800E6D5DC;
+					};
 					E42984E12B3C1A020066C0B1 = {
 						CreatedOnToolsVersion = 15.1;
 						TestTargetID = 8D9063572A4D1C0800E6D5DC;
@@ -315,6 +367,7 @@
 				8D9063572A4D1C0800E6D5DC /* StepCountApp */,
 				8D63155E2A63D10E00910F57 /* StepCountWidgetExtension */,
 				E42984E12B3C1A020066C0B1 /* StepCountAppTests */,
+				E40008C02B3D0AF300AF8C33 /* StepCountAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -334,6 +387,13 @@
 			files = (
 				8D9063632A4D1C0900E6D5DC /* Preview Assets.xcassets in Resources */,
 				8D9063602A4D1C0900E6D5DC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E40008BF2B3D0AF300AF8C33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +438,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E40008BD2B3D0AF300AF8C33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E40008C62B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift in Sources */,
+				E40008C42B3D0AF300AF8C33 /* StepCountAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E42984DE2B3C1A020066C0B1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,6 +462,11 @@
 			isa = PBXTargetDependency;
 			target = 8D63155E2A63D10E00910F57 /* StepCountWidgetExtension */;
 			targetProxy = 8D6315722A63D10F00910F57 /* PBXContainerItemProxy */;
+		};
+		E40008C82B3D0AF300AF8C33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9063572A4D1C0800E6D5DC /* StepCountApp */;
+			targetProxy = E40008C72B3D0AF300AF8C33 /* PBXContainerItemProxy */;
 		};
 		E42984E72B3C1A020066C0B1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -601,7 +675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -642,7 +716,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -651,6 +725,51 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E40008C92B3D0AF300AF8C33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StepCountApp;
+			};
+			name = Debug;
+		};
+		E40008CA2B3D0AF300AF8C33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StepCountApp;
 			};
 			name = Release;
 		};
@@ -727,6 +846,15 @@
 			buildConfigurations = (
 				8D9063672A4D1C0900E6D5DC /* Debug */,
 				8D9063682A4D1C0900E6D5DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E40008CB2B3D0AF300AF8C33 /* Build configuration list for PBXNativeTarget "StepCountAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E40008C92B3D0AF300AF8C33 /* Debug */,
+				E40008CA2B3D0AF300AF8C33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
