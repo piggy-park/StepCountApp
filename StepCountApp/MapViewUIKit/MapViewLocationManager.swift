@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import MapKit
+import OSLog
 
 enum LocationUpdateStatus {
     case none
@@ -22,9 +23,10 @@ final class MapViewLocationManager: NSObject, ObservableObject {
     var savePolyLine: Bool = false
     @Published var selectedPoinSpot: PointSpotAnnotation?
     @Published var locationUpdateStatus: LocationUpdateStatus = .none
-    @Published var drawPolyline: Bool = false
+    @Published var startRecord: Bool = false
     @Published var polylines: [[CLLocation]] = []
     @Published var userHeading: Double?
+    @Published var locationName: String?
 
     var currentLocation: CLLocation = .init()
 
@@ -47,6 +49,7 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = accuracy
         locationManager.distanceFilter = 10
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.headingFilter = 0.1
     }
 
@@ -73,41 +76,25 @@ final class MapViewLocationManager: NSObject, ObservableObject {
         return round(number * with) / with
     }
 
-    private func setPointSpotCoordinates() {
+    private func setRandomPointSpotCoordinates() {
         let currentCoordinate = currentLocation.coordinate
+
         if pointSpotCoordinates.isEmpty {
-            let location1 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 0)
-            let location2 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 90)
-            let location3 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 180)
-            let location4 = getCoordinateWithDistanceAndBearing(from: currentCoordinate, distance: 100, bearing: 270)
-
-
-            pointSpotCoordinates.append(contentsOf: [PointSpotAnnotation(coordinate: location1, title: "spot1", subtitle: ""),
-                                                     PointSpotAnnotation(coordinate: location2, title: "spot2", subtitle: ""),
-                                                     PointSpotAnnotation(coordinate: location3, title: "spot3", subtitle: ""),
-                                                     PointSpotAnnotation(coordinate: location4, title: "spot4", subtitle: "")]
-            )
+            let randomCoordinates = makeRandomCoordinates(in: .init(center: currentCoordinate, latitudinalMeters: 1000, longitudinalMeters: 1000))
+            let randomPointSpots = randomCoordinates.map { PointSpotAnnotation(coordinate: .init(latitude: $0.latitude, longitude: $0.longitude), title: "20", subtitle: "") }
+            pointSpotCoordinates = randomPointSpots
         }
     }
 
-    // 특정 경위도 기준 반경 N미터 떨어져있는 경위도
-    private func getCoordinateWithDistanceAndBearing(from centerCoordinate: CLLocationCoordinate2D, distance: CLLocationDistance, bearing: Double) -> CLLocationCoordinate2D {
-        let earthRadius: CLLocationDistance = 6371000 // 지구 반지름 (미터 단위)
-        let angularDistance = distance / earthRadius
-        let bearingRadians = bearing * .pi / 180
+    func getLocationName(location: CLLocation) {
+        let geoCoder = CLGeocoder()
 
-        let centerLatitudeRadians = centerCoordinate.latitude * .pi / 180
-        let centerLongitudeRadians = centerCoordinate.longitude * .pi / 180
-
-        let newLatitudeRadians = asin(sin(centerLatitudeRadians) * cos(angularDistance) + cos(centerLatitudeRadians) * sin(angularDistance) * cos(bearingRadians))
-        let newLongitudeRadians = centerLongitudeRadians + atan2(sin(bearingRadians) * sin(angularDistance) * cos(centerLatitudeRadians), cos(angularDistance) - sin(centerLatitudeRadians) * sin(newLatitudeRadians))
-
-        let newLatitude = newLatitudeRadians * 180 / .pi
-        let newLongitude = newLongitudeRadians * 180 / .pi
-
-        return CLLocationCoordinate2D(latitude: newLatitude, longitude: newLongitude)
+        geoCoder.reverseGeocodeLocation(location) { placeMarks, _ in
+            guard let placeMarks = placeMarks,
+                  let address = placeMarks.first else { return }
+            self.locationName = address.name
+        }
     }
-
 }
 
 extension MapViewLocationManager: CLLocationManagerDelegate {
@@ -137,15 +124,15 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
+        print("\(location)")
         self.currentLocation = location
-
         // For mulit polyline
-        if drawPolyline {
+        if startRecord {
             self.currentPolyline.append(location)
             if !polylines.isEmpty {
                 self.polylines[polylines.count - 1] = currentPolyline
             } else {
-                self.polylines.append([])
+                self.polylines.append([location])
             }
         }
 
@@ -153,10 +140,10 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
             polylines.append(currentPolyline)
             currentPolyline = []
         }
-        
+
         // For point Spot
         if pointSpotCoordinates.isEmpty {
-            setPointSpotCoordinates()
+            setRandomPointSpotCoordinates()
         }
 
         // 최초 location을 가져오는 시점을 맞추기 위해 선언.
@@ -164,11 +151,39 @@ extension MapViewLocationManager: CLLocationManagerDelegate {
             self.locationUpdateStatus = .startUpdating
         }
 
+
     }
 
     // TODO: 위치를 가지고 오지 못할 때 에러 처리
     func locationManager(_ manager: CLLocationManager,
                          didFailWithError error: Error) {
         print("Core Location Error : \(error)")
+    }
+}
+
+extension MapViewLocationManager {
+    func makeRandomCoordinates(_ number: Int = 100, in region: MKCoordinateRegion) -> [CLLocationCoordinate2D] {
+        let minLat = region.center.latitude - (region.span.latitudeDelta * 2)
+        let maxLat = region.center.latitude + (region.span.latitudeDelta * 2)
+
+        let minLon = region.center.longitude - (region.span.longitudeDelta)
+        let maxLon = region.center.longitude + (region.span.longitudeDelta)
+
+        let adjusted: [Int] = [minLat, maxLat, minLon, maxLon].map { Int($0 * 10000) }
+        let latDelta = adjusted[1] - adjusted[0]
+        let lonDelta = abs(adjusted[3] - adjusted[2])
+
+        var coordinates = [CLLocationCoordinate2D]()
+        for _ in 0...number {
+            let latRand = Int(arc4random_uniform(UInt32(latDelta)))
+            let lonRand = Int(arc4random_uniform(UInt32(lonDelta))) * -1
+
+            let lat: Double = minLat + (Double(latRand) / 10000.0)
+            let lon: Double = minLon - (Double(lonRand) / 10000.0)
+
+            coordinates.append(CLLocationCoordinate2D(latitude: lat, longitude: lon))
+        }
+
+        return coordinates
     }
 }

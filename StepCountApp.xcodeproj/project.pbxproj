@@ -7,45 +7,134 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D411CF52A4ECD5800C62AE4 /* MapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */; };
+		8D2460EB2A5FB111002281BE /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */; };
 		8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */; };
-		8D4967072A57DB27001EDF38 /* DestinationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */; };
-		8D7B19012A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */; };
+		8D6315622A63D10E00910F57 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6315612A63D10E00910F57 /* WidgetKit.framework */; };
+		8D6315642A63D10E00910F57 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D6315632A63D10E00910F57 /* SwiftUI.framework */; };
+		8D6315672A63D10E00910F57 /* StepCountWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6315662A63D10E00910F57 /* StepCountWidgetBundle.swift */; };
+		8D6315692A63D10E00910F57 /* StepCountWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6315682A63D10E00910F57 /* StepCountWidgetLiveActivity.swift */; };
+		8D63156B2A63D10E00910F57 /* StepCountWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D63156A2A63D10E00910F57 /* StepCountWidget.swift */; };
+		8D63156E2A63D10F00910F57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D63156D2A63D10F00910F57 /* Assets.xcassets */; };
+		8D6315702A63D10F00910F57 /* StepCountWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8D63156C2A63D10E00910F57 /* StepCountWidget.intentdefinition */; };
+		8D6315712A63D10F00910F57 /* StepCountWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 8D63156C2A63D10E00910F57 /* StepCountWidget.intentdefinition */; };
+		8D6315742A63D10F00910F57 /* StepCountWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */; };
-		8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90635D2A4D1C0800E6D5DC /* ContentView.swift */; };
 		8D9063602A4D1C0900E6D5DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */; };
 		8D9063632A4D1C0900E6D5DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9063622A4D1C0900E6D5DC /* Preview Assets.xcassets */; };
-		8DA9ED222A4ED14C00029C71 /* MapViewSwiftUI_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */; };
-		8DA9ED242A4ED2E600029C71 /* MapViewModelSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */; };
 		8DB4AE0D2A56C2C100164699 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4AE0C2A56C2C100164699 /* MapView.swift */; };
 		8DB4AE0F2A56C2F200164699 /* MapViewLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4AE0E2A56C2F200164699 /* MapViewLocationManager.swift */; };
 		8DC0C7F12A5E3A01006A264E /* GradientTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */; };
 		8DC0C7F42A5E3A3E006A264E /* PointSpotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */; };
 		8DC0C7F62A5E3B55006A264E /* UserLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */; };
+		E40008C42B3D0AF300AF8C33 /* StepCountAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40008C32B3D0AF300AF8C33 /* StepCountAppUITests.swift */; };
+		E40008C62B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40008C52B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift */; };
+		E42984E52B3C1A020066C0B1 /* StepCountAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */; };
+		E43F4CA92AF881AE009423EA /* StepsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CA82AF881AE009423EA /* StepsManager.swift */; };
+		E43F4CAB2AF881E7009423EA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAA2AF881E7009423EA /* Extensions.swift */; };
+		E43F4CAD2AF8821B009423EA /* UIKitMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */; };
+		E43F4CAF2AF88231009423EA /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F4CAE2AF88231009423EA /* MapCoordinator.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8D6315722A63D10F00910F57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9063502A4D1C0800E6D5DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D63155E2A63D10E00910F57;
+			remoteInfo = StepCountWidgetExtension;
+		};
+		E40008C72B3D0AF300AF8C33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9063502A4D1C0800E6D5DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9063572A4D1C0800E6D5DC;
+			remoteInfo = StepCountApp;
+		};
+		E42984E62B3C1A020066C0B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9063502A4D1C0800E6D5DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9063572A4D1C0800E6D5DC;
+			remoteInfo = StepCountApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8D6315752A63D10F00910F57 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8D6315742A63D10F00910F57 /* StepCountWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI.swift; sourceTree = "<group>"; };
+		8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
+		8D2CCC0C2A67D70E0034A5EE /* StepCountApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StepCountApp.entitlements; sourceTree = "<group>"; };
 		8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
-		8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailView.swift; sourceTree = "<group>"; };
-		8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountMapViewSwiftUI.swift; sourceTree = "<group>"; };
+		8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StepCountWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D6315612A63D10E00910F57 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8D6315632A63D10E00910F57 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		8D6315662A63D10E00910F57 /* StepCountWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountWidgetBundle.swift; sourceTree = "<group>"; };
+		8D6315682A63D10E00910F57 /* StepCountWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		8D63156A2A63D10E00910F57 /* StepCountWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountWidget.swift; sourceTree = "<group>"; };
+		8D63156C2A63D10E00910F57 /* StepCountWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = StepCountWidget.intentdefinition; sourceTree = "<group>"; };
+		8D63156D2A63D10F00910F57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D63156F2A63D10F00910F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D9063582A4D1C0800E6D5DC /* StepCountApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepCountApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppApp.swift; sourceTree = "<group>"; };
-		8D90635D2A4D1C0800E6D5DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D9063622A4D1C0900E6D5DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D9063692A4D1CE000E6D5DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSwiftUI_1.swift; sourceTree = "<group>"; };
-		8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelSwiftUI.swift; sourceTree = "<group>"; };
 		8DB4AE0C2A56C2C100164699 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		8DB4AE0E2A56C2F200164699 /* MapViewLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewLocationManager.swift; sourceTree = "<group>"; };
 		8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTriangleView.swift; sourceTree = "<group>"; };
 		8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointSpotAnnotation.swift; sourceTree = "<group>"; };
 		8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationAnnotation.swift; sourceTree = "<group>"; };
+		E40008C12B3D0AF300AF8C33 /* StepCountAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepCountAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40008C32B3D0AF300AF8C33 /* StepCountAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppUITests.swift; sourceTree = "<group>"; };
+		E40008C52B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepCountAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountAppTests.swift; sourceTree = "<group>"; };
+		E43F4CA82AF881AE009423EA /* StepsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsManager.swift; sourceTree = "<group>"; };
+		E43F4CAA2AF881E7009423EA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMapView.swift; sourceTree = "<group>"; };
+		E43F4CAE2AF88231009423EA /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		E45BD7882B451AB100955FFA /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		E45BD7892B451AC800955FFA /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
+		E45BD78A2B451AD600955FFA /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8D63155C2A63D10E00910F57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D6315642A63D10E00910F57 /* SwiftUI.framework in Frameworks */,
+				8D6315622A63D10E00910F57 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D9063552A4D1C0800E6D5DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E40008BE2B3D0AF300AF8C33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42984DF2B3C1A020066C0B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -55,12 +144,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D6315602A63D10E00910F57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D6315612A63D10E00910F57 /* WidgetKit.framework */,
+				8D6315632A63D10E00910F57 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D6315652A63D10E00910F57 /* StepCountWidget */ = {
+			isa = PBXGroup;
+			children = (
+				8D6315662A63D10E00910F57 /* StepCountWidgetBundle.swift */,
+				8D6315682A63D10E00910F57 /* StepCountWidgetLiveActivity.swift */,
+				8D63156A2A63D10E00910F57 /* StepCountWidget.swift */,
+				8D63156C2A63D10E00910F57 /* StepCountWidget.intentdefinition */,
+				8D63156D2A63D10F00910F57 /* Assets.xcassets */,
+				8D63156F2A63D10F00910F57 /* Info.plist */,
+			);
+			path = StepCountWidget;
+			sourceTree = "<group>";
+		};
 		8D90634F2A4D1C0800E6D5DC = {
 			isa = PBXGroup;
 			children = (
+				E45BD7872B451A7700955FFA /* ci_scripts */,
 				8D90635A2A4D1C0800E6D5DC /* StepCountApp */,
+				8D6315652A63D10E00910F57 /* StepCountWidget */,
+				E42984E32B3C1A020066C0B1 /* StepCountAppTests */,
+				E40008C22B3D0AF300AF8C33 /* StepCountAppUITests */,
+				8D6315602A63D10E00910F57 /* Frameworks */,
 				8D9063592A4D1C0800E6D5DC /* Products */,
-				A0AC7C1B89979849593E434A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				8D9063582A4D1C0800E6D5DC /* StepCountApp.app */,
+				8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */,
+				E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */,
+				E40008C12B3D0AF300AF8C33 /* StepCountAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,12 +193,12 @@
 		8D90635A2A4D1C0800E6D5DC /* StepCountApp */ = {
 			isa = PBXGroup;
 			children = (
+				8D2CCC0C2A67D70E0034A5EE /* StepCountApp.entitlements */,
 				8D90635B2A4D1C0800E6D5DC /* StepCountAppApp.swift */,
-				8D90635D2A4D1C0800E6D5DC /* ContentView.swift */,
 				8D411CF62A4ECD5F00C62AE4 /* StepCountView.swift */,
-				8D4967062A57DB27001EDF38 /* DestinationDetailView.swift */,
+				E43F4CA82AF881AE009423EA /* StepsManager.swift */,
+				E43F4CAA2AF881E7009423EA /* Extensions.swift */,
 				8DB4AE102A56C2F900164699 /* MapViewUIKit */,
-				8DB4AE112A56C33800164699 /* MapViewSwiftUI */,
 				8D90635F2A4D1C0900E6D5DC /* Assets.xcassets */,
 				8D9063692A4D1CE000E6D5DC /* Info.plist */,
 				8D9063612A4D1C0900E6D5DC /* Preview Content */,
@@ -100,21 +218,12 @@
 			isa = PBXGroup;
 			children = (
 				8DB4AE0C2A56C2C100164699 /* MapView.swift */,
+				E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */,
+				E43F4CAE2AF88231009423EA /* MapCoordinator.swift */,
 				8DB4AE0E2A56C2F200164699 /* MapViewLocationManager.swift */,
 				8DC0C7F22A5E3A29006A264E /* MapAnnotations */,
 			);
 			path = MapViewUIKit;
-			sourceTree = "<group>";
-		};
-		8DB4AE112A56C33800164699 /* MapViewSwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-				8DA9ED212A4ED14C00029C71 /* MapViewSwiftUI_1.swift */,
-				8D7B19002A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift */,
-				8DA9ED232A4ED2E600029C71 /* MapViewModelSwiftUI.swift */,
-				8D411CF42A4ECD5800C62AE4 /* MapViewSwiftUI.swift */,
-			);
-			path = MapViewSwiftUI;
 			sourceTree = "<group>";
 		};
 		8DC0C7F22A5E3A29006A264E /* MapAnnotations */ = {
@@ -123,20 +232,58 @@
 				8DC0C7F02A5E3A01006A264E /* GradientTriangleView.swift */,
 				8DC0C7F52A5E3B55006A264E /* UserLocationAnnotation.swift */,
 				8DC0C7F32A5E3A3E006A264E /* PointSpotAnnotation.swift */,
+				8D2460EA2A5FB111002281BE /* ClusterAnnotationView.swift */,
 			);
 			path = MapAnnotations;
 			sourceTree = "<group>";
 		};
-		A0AC7C1B89979849593E434A /* Pods */ = {
+		E40008C22B3D0AF300AF8C33 /* StepCountAppUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E40008C32B3D0AF300AF8C33 /* StepCountAppUITests.swift */,
+				E40008C52B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift */,
 			);
-			path = Pods;
+			path = StepCountAppUITests;
+			sourceTree = "<group>";
+		};
+		E42984E32B3C1A020066C0B1 /* StepCountAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */,
+			);
+			path = StepCountAppTests;
+			sourceTree = "<group>";
+		};
+		E45BD7872B451A7700955FFA /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				E45BD7882B451AB100955FFA /* ci_post_clone.sh */,
+				E45BD7892B451AC800955FFA /* ci_pre_xcodebuild.sh */,
+				E45BD78A2B451AD600955FFA /* ci_post_xcodebuild.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8D63155E2A63D10E00910F57 /* StepCountWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D6315782A63D10F00910F57 /* Build configuration list for PBXNativeTarget "StepCountWidgetExtension" */;
+			buildPhases = (
+				8D63155B2A63D10E00910F57 /* Sources */,
+				8D63155C2A63D10E00910F57 /* Frameworks */,
+				8D63155D2A63D10E00910F57 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StepCountWidgetExtension;
+			productName = StepCountWidgetExtension;
+			productReference = 8D63155F2A63D10E00910F57 /* StepCountWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8D9063572A4D1C0800E6D5DC /* StepCountApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D9063662A4D1C0900E6D5DC /* Build configuration list for PBXNativeTarget "StepCountApp" */;
@@ -144,15 +291,53 @@
 				8D9063542A4D1C0800E6D5DC /* Sources */,
 				8D9063552A4D1C0800E6D5DC /* Frameworks */,
 				8D9063562A4D1C0800E6D5DC /* Resources */,
+				8D6315752A63D10F00910F57 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8D6315732A63D10F00910F57 /* PBXTargetDependency */,
 			);
 			name = StepCountApp;
 			productName = StepCountApp;
 			productReference = 8D9063582A4D1C0800E6D5DC /* StepCountApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E40008C02B3D0AF300AF8C33 /* StepCountAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E40008CB2B3D0AF300AF8C33 /* Build configuration list for PBXNativeTarget "StepCountAppUITests" */;
+			buildPhases = (
+				E40008BD2B3D0AF300AF8C33 /* Sources */,
+				E40008BE2B3D0AF300AF8C33 /* Frameworks */,
+				E40008BF2B3D0AF300AF8C33 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E40008C82B3D0AF300AF8C33 /* PBXTargetDependency */,
+			);
+			name = StepCountAppUITests;
+			productName = StepCountAppUITests;
+			productReference = E40008C12B3D0AF300AF8C33 /* StepCountAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E42984E12B3C1A020066C0B1 /* StepCountAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E42984EA2B3C1A020066C0B1 /* Build configuration list for PBXNativeTarget "StepCountAppTests" */;
+			buildPhases = (
+				E42984DE2B3C1A020066C0B1 /* Sources */,
+				E42984DF2B3C1A020066C0B1 /* Frameworks */,
+				E42984E02B3C1A020066C0B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E42984E72B3C1A020066C0B1 /* PBXTargetDependency */,
+			);
+			name = StepCountAppTests;
+			productName = StepCountAppTests;
+			productReference = E42984E22B3C1A020066C0B1 /* StepCountAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -161,11 +346,22 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					8D63155E2A63D10E00910F57 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					8D9063572A4D1C0800E6D5DC = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					E40008C02B3D0AF300AF8C33 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 8D9063572A4D1C0800E6D5DC;
+					};
+					E42984E12B3C1A020066C0B1 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 8D9063572A4D1C0800E6D5DC;
 					};
 				};
 			};
@@ -183,11 +379,22 @@
 			projectRoot = "";
 			targets = (
 				8D9063572A4D1C0800E6D5DC /* StepCountApp */,
+				8D63155E2A63D10E00910F57 /* StepCountWidgetExtension */,
+				E42984E12B3C1A020066C0B1 /* StepCountAppTests */,
+				E40008C02B3D0AF300AF8C33 /* StepCountAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8D63155D2A63D10E00910F57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D63156E2A63D10F00910F57 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D9063562A4D1C0800E6D5DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,32 +404,148 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E40008BF2B3D0AF300AF8C33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42984E02B3C1A020066C0B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8D63155B2A63D10E00910F57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D6315702A63D10F00910F57 /* StepCountWidget.intentdefinition in Sources */,
+				8D6315692A63D10E00910F57 /* StepCountWidgetLiveActivity.swift in Sources */,
+				8D63156B2A63D10E00910F57 /* StepCountWidget.swift in Sources */,
+				8D6315672A63D10E00910F57 /* StepCountWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D9063542A4D1C0800E6D5DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D411CF52A4ECD5800C62AE4 /* MapViewSwiftUI.swift in Sources */,
-				8DA9ED222A4ED14C00029C71 /* MapViewSwiftUI_1.swift in Sources */,
 				8DC0C7F12A5E3A01006A264E /* GradientTriangleView.swift in Sources */,
 				8DC0C7F42A5E3A3E006A264E /* PointSpotAnnotation.swift in Sources */,
-				8D90635E2A4D1C0800E6D5DC /* ContentView.swift in Sources */,
+				8D6315712A63D10F00910F57 /* StepCountWidget.intentdefinition in Sources */,
+				E43F4CAD2AF8821B009423EA /* UIKitMapView.swift in Sources */,
 				8DC0C7F62A5E3B55006A264E /* UserLocationAnnotation.swift in Sources */,
 				8D411CF72A4ECD5F00C62AE4 /* StepCountView.swift in Sources */,
-				8D4967072A57DB27001EDF38 /* DestinationDetailView.swift in Sources */,
-				8D7B19012A53DD0B0079A0E3 /* StepCountMapViewSwiftUI.swift in Sources */,
+				E43F4CA92AF881AE009423EA /* StepsManager.swift in Sources */,
+				E43F4CAB2AF881E7009423EA /* Extensions.swift in Sources */,
+				E43F4CAF2AF88231009423EA /* MapCoordinator.swift in Sources */,
 				8D90635C2A4D1C0800E6D5DC /* StepCountAppApp.swift in Sources */,
-				8DA9ED242A4ED2E600029C71 /* MapViewModelSwiftUI.swift in Sources */,
 				8DB4AE0D2A56C2C100164699 /* MapView.swift in Sources */,
+				8D2460EB2A5FB111002281BE /* ClusterAnnotationView.swift in Sources */,
 				8DB4AE0F2A56C2F200164699 /* MapViewLocationManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E40008BD2B3D0AF300AF8C33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E40008C62B3D0AF300AF8C33 /* StepCountAppUITestsLaunchTests.swift in Sources */,
+				E40008C42B3D0AF300AF8C33 /* StepCountAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42984DE2B3C1A020066C0B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42984E52B3C1A020066C0B1 /* StepCountAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		8D6315732A63D10F00910F57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D63155E2A63D10E00910F57 /* StepCountWidgetExtension */;
+			targetProxy = 8D6315722A63D10F00910F57 /* PBXContainerItemProxy */;
+		};
+		E40008C82B3D0AF300AF8C33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9063572A4D1C0800E6D5DC /* StepCountApp */;
+			targetProxy = E40008C72B3D0AF300AF8C33 /* PBXContainerItemProxy */;
+		};
+		E42984E72B3C1A020066C0B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9063572A4D1C0800E6D5DC /* StepCountApp */;
+			targetProxy = E42984E62B3C1A020066C0B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		8D6315762A63D10F00910F57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KVQ3SYH7AU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StepCountWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StepCountWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8D6315772A63D10F00910F57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KVQ3SYH7AU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StepCountWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StepCountWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp.Widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8D9063642A4D1C0900E6D5DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -340,8 +663,10 @@
 		8D9063672A4D1C0900E6D5DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = StepCountApp/StepCountApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
@@ -349,30 +674,40 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 권한좀 주세요 제발~";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 권한좀 주세요 제발 ~~~~~";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 권한좀 주세요 제발~~";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 추적을 위해 권한을 허용해주세요.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "발걸음수 측정을 위해 권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		8D9063682A4D1C0900E6D5DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = StepCountApp/StepCountApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StepCountApp/Preview Content\"";
@@ -380,28 +715,137 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StepCountApp/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 권한좀 주세요 제발~";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 권한좀 주세요 제발 ~~~~~";
+				INFOPLIST_KEY_NSLocationUsageDescription = "위치 권한좀 주세요 제발~~";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 추적을 위해 권한을 허용해주세요.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "발걸음수 측정을 위해 권한을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ko.piggy.StepCountApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E40008C92B3D0AF300AF8C33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StepCountApp;
+			};
+			name = Debug;
+		};
+		E40008CA2B3D0AF300AF8C33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StepCountApp;
+			};
+			name = Release;
+		};
+		E42984E82B3C1A020066C0B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StepCountApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StepCountApp";
+			};
+			name = Debug;
+		};
+		E42984E92B3C1A020066C0B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N6KUR9465F;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggy-sample-project.StepCountAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StepCountApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StepCountApp";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8D6315782A63D10F00910F57 /* Build configuration list for PBXNativeTarget "StepCountWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D6315762A63D10F00910F57 /* Debug */,
+				8D6315772A63D10F00910F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8D9063532A4D1C0800E6D5DC /* Build configuration list for PBXProject "StepCountApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -416,6 +860,24 @@
 			buildConfigurations = (
 				8D9063672A4D1C0900E6D5DC /* Debug */,
 				8D9063682A4D1C0900E6D5DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E40008CB2B3D0AF300AF8C33 /* Build configuration list for PBXNativeTarget "StepCountAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E40008C92B3D0AF300AF8C33 /* Debug */,
+				E40008CA2B3D0AF300AF8C33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E42984EA2B3C1A020066C0B1 /* Build configuration list for PBXNativeTarget "StepCountAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42984E82B3C1A020066C0B1 /* Debug */,
+				E42984E92B3C1A020066C0B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

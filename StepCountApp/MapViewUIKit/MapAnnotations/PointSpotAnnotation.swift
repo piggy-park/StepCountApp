@@ -10,13 +10,20 @@ import MapKit
 
 // 맵 위에 보여질 특정 포인트 관련 Custom View
 final class PointSpotAnnotationView: MKAnnotationView {
-    static let ID: String = "PointSpot"
+    static let ID: String = "PointSpotAnnotation"
+    private let pointSpotClusterID = "PointSpotClusterID"
     private let size: CGSize = .init(width: 30, height: 30)
 
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         configure()
 //        setupGestureRecognizers()
+    }
+
+    override var annotation: MKAnnotation? {
+        willSet {
+            clusteringIdentifier = pointSpotClusterID
+        }
     }
 
     @available(*, unavailable)
@@ -28,9 +35,10 @@ final class PointSpotAnnotationView: MKAnnotationView {
         self.backgroundColor = .systemPink
         self.frame = .init(origin: self.frame.origin, size: size)
         self.layer.cornerRadius = self.frame.height / 2
+        self.clusteringIdentifier = pointSpotClusterID
     }
 
-    // TODO: handle Tap Gesture if want
+    // MARK: -- handle Tap Gesture if want
 //    private func setupGestureRecognizers() {
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
 //        addGestureRecognizer(tapGesture)

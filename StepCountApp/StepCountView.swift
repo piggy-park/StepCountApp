@@ -6,46 +6,56 @@
 //
 
 import SwiftUI
-import CoreMotion
 import Combine
+import Charts
 
 struct StepCountView: View {
     @State private var showMap: Bool = false
     @StateObject private var stepsManager = StepsMananger()
-
+    private let calendar = Calendar.current
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                VStack(alignment: .leading) {
-                    Text("현재 걸음 수")
-                        .foregroundColor(.gray)
-                    HStack {
-                        Text("\(stepsManager.steps ?? 0) 걸음")
-                            .bold()
-                            .fontWeight(.bold)
-                    }
-                    
-                }
-                
-                Spacer().frame(height: 30)
-                HStack(spacing: 16) {
-                    Text("방문해서 포인트 받기")
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(.blue)
-                        .overlay {
-                            Text("내 주변 보기")
-                                .foregroundStyle(.white)
-                        }
-                        .frame(width: 100, height: 32)
-                    
-                }
-                .onTapGesture {
-                    self.showMap = true
+        VStack(alignment: .leading) {
+            HStack {
+                Text("오늘 걸음 수")
+                    .foregroundColor(.gray)
+                HStack {
+                    Text("\(stepsManager.steps ?? 0) 걸음")
+                        .bold()
+                        .fontWeight(.bold)
                 }
             }
+
+            HStack(spacing: 16) {
+                Text("방문해서 포인트 받기")
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.blue)
+                    .overlay {
+                        Text("내 주변 보기")
+                            .foregroundStyle(.white)
+                    }
+                    .frame(width: 100, height: 32)
+
+            }
+            .onTapGesture {
+                self.showMap = true
+            }
+
+            Spacer().frame(height: 50)
+
+            Text("일주일 기록")
+                .foregroundColor(.gray)
+
+            Chart {
+                ForEach(stepsManager.stepsForWeek) { stepsPerDay in
+
+                    BarMark(x: .value("날짜", "\(WeekDay.init(rawValue: stepsPerDay.countOfDayAgo)!)"),
+                            y: .value("걸음수", stepsPerDay.stepCount) )
+                }
+            }
+            .frame(width: 300, height: 300)
         }
         .onAppear {
-            stepsManager.getSteps() // get current step count
+            stepsManager.getSteps()    // get current step count
             stepsManager.updateSteps() // update when data change
         }
         .fullScreenCover(isPresented: $showMap) {
@@ -54,50 +64,6 @@ struct StepCountView: View {
 
     }
 }
-
-struct MapViewWithSteps: View {
-    @Environment(\.dismiss) private var dismiss
-    var body: some View {
-        Button("dismiss") {
-            dismiss()
-        }
-    }
-}
-
-
-final class StepsMananger: ObservableObject {
-    private let pedometer: CMPedometer = .init()
-    private var isPedometerIsAvailable: Bool {
-        return CMPedometer.isStepCountingAvailable()
-    }
-
-    @Published var steps: Int?
-
-    func getSteps() {
-        let startDate = Calendar.current.startOfDay(for: Date())
-        pedometer.queryPedometerData(from: startDate, to: Date()) { [weak self] data, error in
-            guard let data = data,
-                  let self = self,
-                  error == nil else { return }
-            DispatchQueue.main.async {
-                self.steps = data.numberOfSteps.intValue
-                print("Current Step Counts", data.numberOfSteps.intValue)
-            }
-        }
-    }
-
-    func updateSteps() {
-        if isPedometerIsAvailable {
-            pedometer.startUpdates(from: Date()) { [weak self] data, error in
-                guard let self = self,
-                      data != nil,
-                      error == nil else { return }
-                self.getSteps()
-            }
-        }
-    }
-}
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
