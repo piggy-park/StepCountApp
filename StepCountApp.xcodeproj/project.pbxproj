@@ -105,6 +105,9 @@
 		E43F4CAA2AF881E7009423EA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E43F4CAC2AF8821B009423EA /* UIKitMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMapView.swift; sourceTree = "<group>"; };
 		E43F4CAE2AF88231009423EA /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		E45BD7882B451AB100955FFA /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		E45BD7892B451AC800955FFA /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
+		E45BD78A2B451AD600955FFA /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,7 @@
 		8D90634F2A4D1C0800E6D5DC = {
 			isa = PBXGroup;
 			children = (
+				E45BD7872B451A7700955FFA /* ci_scripts */,
 				8D90635A2A4D1C0800E6D5DC /* StepCountApp */,
 				8D6315652A63D10E00910F57 /* StepCountWidget */,
 				E42984E32B3C1A020066C0B1 /* StepCountAppTests */,
@@ -248,6 +252,16 @@
 				E42984E42B3C1A020066C0B1 /* StepCountAppTests.swift */,
 			);
 			path = StepCountAppTests;
+			sourceTree = "<group>";
+		};
+		E45BD7872B451A7700955FFA /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				E45BD7882B451AB100955FFA /* ci_post_clone.sh */,
+				E45BD7892B451AC800955FFA /* ci_pre_xcodebuild.sh */,
+				E45BD78A2B451AD600955FFA /* ci_post_xcodebuild.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
