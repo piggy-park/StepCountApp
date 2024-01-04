@@ -10,6 +10,10 @@ echo "pre xcode build script phase"
 # 새로운 버전 번호 설정
 NEW_VERSION=5.0.0
 
+DIR=$(pwd)
+echo "current path"
+echo $DIR
+
 cd ..
 
 xcrun agvtool new-marketing-version $NEW_VERSION
