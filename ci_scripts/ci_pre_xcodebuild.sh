@@ -13,6 +13,7 @@ NEW_VERSION=5.0.0
 DIR=$(pwd)
 echo "current path"
 echo $DIR
+echo "current tag $CI_TAG"
 
 cd ..
 
