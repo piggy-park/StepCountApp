@@ -7,6 +7,21 @@
 #  
 echo "post clone script phase"
 
+# 운영 체제 정보 출력
+echo "==== Operating System ===="
+echo "OS: $(uname -s)"
+echo "Kernel Version: $(uname -r)"
+
+# 사용 가능한 쉘 정보 출력
+echo -e "\n==== Shell Information ===="
+echo "Shell: $SHELL"
+echo "Available Shells: $(cat /etc/shells)"
+
+# 현재 사용자 정보 출력
+echo -e "\n==== User Information ===="
+echo "Logged-in User: $USER"
+echo "Home Directory: $HOME"
+
 echo "==== CPU Information ===="
 echo "Processor: $(sysctl -n machdep.cpu.brand_string)"
 echo "Number of Cores: $(sysctl -n hw.ncpu)"
