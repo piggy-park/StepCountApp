@@ -25,5 +25,5 @@ echo -e "\n==== Network Information ===="
 ifconfig | grep -E '(en0|en1|eth0|eth1|wlan0|wlan1)' -A 5
 
 # 그래픽 카드 정보 출력 (Mac에서만 동작)
-echo -e "\n==== GPU Information ===="
-system_profiler SPDisplaysDataType | grep "Chipset Model:"
+#echo -e "\n==== GPU Information ===="
+#system_profiler SPDisplaysDataType | grep "Chipset Model:"
